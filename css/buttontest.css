@@ -1,15 +1,11 @@
-* {
-    margin: 0;
-    padding: 0;
-}
 
 /* Icon 1 */
 
 #nav-icon1 {
+    
     width: 20px;
     height: 15px;
-    position: relative;
-    margin: 17px auto;
+    margin: 23px;
     -webkit-transform: rotate(0deg);
     -moz-transform: rotate(0deg);
     -o-transform: rotate(0deg);
@@ -24,9 +20,9 @@
 #nav-icon1 span {
     display: block;
     position: absolute;
-    height: 3px;
+    height: 2px;
     width: 100%;
-    background: #d3531a;
+    background: whitesmoke;
     border-radius: 9px;
     opacity: 1;
     left: 0;
