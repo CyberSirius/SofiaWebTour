@@ -1,0 +1,59 @@
+<html>
+<head>
+    <title>Some Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/material.css">
+    <script src="js/material.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<style>
+    .demo-layout-transparent {
+        background: url('images/background.jpg') center / cover;
+    }
+
+    .demo-layout-transparent .mdl-layout__header,
+    .demo-layout-transparent .mdl-layout__drawer-button {
+        /* This background is dark, so we set text to white. Use 87% black instead if
+           your background is light. */
+        color: white;
+    }
+</style>
+
+<title>Sofia Web Tour</title>
+</head>
+<body>
+<div class="demo-layout-transparent mdl-layout mdl-js-layout">
+    <header class="mdl-layout__header mdl-layout__header--transparent">
+        <div class="mdl-layout__header-row">
+            <!-- Title -->
+            <span class="mdl-layout-title">Sofia Web Tour</span>
+            <!-- Add spacer, to align navigation to the right -->
+            <div class="mdl-layout-spacer"></div>
+            <!-- Navigation -->
+            <nav class="mdl-navigation">
+                <a href="" class="mdl-navigation__link">
+                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--teal"><img
+                            src="images/icons/language/ic_language_white_24dp_1x.png" alt="fail"></button>
+                </a>
+                <a href="" class="mdl-navigation__link">
+                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--teal mdl-color-text--white">
+                        Log in
+                    </button>
+                </a>
+            </nav>
+        </div>
+    </header>
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Menu</span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="">Link</a>
+        </nav>
+    </div>
+    <main class="mdl-layout__content">
+    </main>
+</div>
+</body>
+</html>
