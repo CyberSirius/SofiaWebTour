@@ -1,31 +1,26 @@
+<!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
     <title>Some Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/material.css">
+    <link rel="stylesheet" href="css/palette.css">
+    <link rel="stylesheet" href="css/buttontest.css">
     <script src="js/material.js"></script>
+    <script src="js/buttontestjs.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
-<style>
-    .demo-layout-transparent {
-        background: url('images/background.jpg') center / cover;
-    }
-
-    .demo-layout-transparent .mdl-layout__header,
-    .demo-layout-transparent .mdl-layout__drawer-button {
-        /* This background is dark, so we set text to white. Use 87% black instead if
-           your background is light. */
-        color: white;
-    }
-</style>
-
 <title>Sofia Web Tour</title>
-</head>
 <body>
-<div class="demo-layout-transparent mdl-layout mdl-js-layout">
-    <header class="mdl-layout__header mdl-layout__header--transparent">
-        <div class="mdl-layout__header-row">
+<div class=" mdl-layout mdl-js-layout">
+    <header class="mdl-layout__header default-primary-color">
+        <div class="mdl-layout__header-row default-primary-color ">
             <!-- Title -->
+            <div id="nav-icon1" class="mdl-layout__drawer-button" onclick="changeClass()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
             <span class="mdl-layout-title">Sofia Web Tour</span>
             <!-- Add spacer, to align navigation to the right -->
             <div class="mdl-layout-spacer"></div>
