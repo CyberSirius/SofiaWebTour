@@ -8216,7 +8216,6 @@ fieldset[disabled] .mdl-checkbox .mdl-checkbox__ripple-container .mdl-ripple,
     color: rgb(66, 66, 66);
     overflow: visible;
     overflow-y: auto;
-    z-index: 5;
 }
 
 .mdl-layout__drawer.is-visible {
@@ -8566,39 +8565,39 @@ fieldset[disabled] .mdl-checkbox .mdl-checkbox__ripple-container .mdl-ripple,
     }
 }
 
-.mdl-layout__obfuscator {
-    background-color: transparent;
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    z-index: 4;
-    visibility: hidden;
-    transition-property: background-color;
-    transition-duration: 0.2s;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
+/*.mdl-layout__obfuscator {*/
+/*background-color: transparent;*/
+/*position: absolute;*/
+/*top: 0;*/
+/*left: 0;*/
+/*height: 100%;*/
+/*width: 100%;*/
+/*z-index: 4;*/
+/*visibility: hidden;*/
+/*transition-property: background-color;*/
+/*transition-duration: 0.2s;*/
+/*transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);*/
+/*}*/
 
-.mdl-layout__obfuscator.is-visible {
-    background-color: rgba(0, 0, 0, 0.5);
-    visibility: visible;
-}
+/*.mdl-layout__obfuscator.is-visible {*/
+/*background-color: rgba(0, 0, 0, 0.5);*/
+/*visibility: visible;*/
+/*}*/
 
-@supports (pointer-events: auto) {
-    .mdl-layout__obfuscator {
-        background-color: rgba(0, 0, 0, 0.5);
-        opacity: 0;
-        transition-property: opacity;
-        visibility: visible;
-        pointer-events: none;
-    }
+/*@supports (pointer-events: auto) {*/
+/*.mdl-layout__obfuscator {*/
+/*background-color: rgba(0, 0, 0, 0.5);*/
+/*opacity: 0;*/
+/*transition-property: opacity;*/
+/*visibility: visible;*/
+/*pointer-events: none;*/
+/*}*/
 
-    .mdl-layout__obfuscator.is-visible {
-        pointer-events: auto;
-        opacity: 1;
-    }
-}
+/*.mdl-layout__obfuscator.is-visible {*/
+/*pointer-events: auto;*/
+/*opacity: 1;*/
+/*}*/
+/*}*/
 
 .mdl-layout__content {
     -ms-flex: 0 1 auto;
