@@ -71,3 +71,7 @@
     -o-transform: rotate(-135deg);
     transform: rotate(-135deg);
 }
+.search-pos {
+	
+	left: 50px;
+}

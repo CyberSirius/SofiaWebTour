@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	
     <meta charset="utf-8">
     <title>Some Title</title>
     <link rel="stylesheet" href="css/material.css">
@@ -9,22 +10,63 @@
     <script src="js/material.js"></script>
     <script src="js/buttontestjs.js" type="text/javascript"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        .mdl-layout__header {
+            z-index: 2;
+            position: fixed;
+  			top:0;
+  			left:0; 
+  			
+  			width: 100%;
+        }
+        .mdl-layout__drawer {
+            z-index: 1;
+        }
+        .mdl-layout__drawer{
+			top: 64px;
+		}
+		.mdl-layout__content{
+			z-index: 2;
+			top: 30px;
+			
+		}
+		
+    </style>
+    
 </head>
 <title>Sofia Web Tour</title>
 <body>
 <div class=" mdl-layout mdl-js-layout">
+
     <header class="mdl-layout__header default-primary-color">
         <div class="mdl-layout__header-row default-primary-color ">
+
             <!-- Title -->
-            <div id="nav-icon1" class="mdl-layout__drawer-button" onclick="changeClass()">
+            <div role="button" id="nav-icon1" class="mdl-layout__drawer-button " onclick="changeClass()">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
+
             <span class="mdl-layout-title">Sofia Web Tour</span>
             <!-- Add spacer, to align navigation to the right -->
-            <div class="mdl-layout-spacer"></div>
+            <div class="mdl-layout-spacer">
+            <div class="search-pos mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                  mdl-textfield--floating-label mdl-textfield--align-left">
+        		<label class="mdl-button mdl-js-button mdl-button--icon"
+               			for="fixed-header-drawer-exp">
+          			<i class="material-icons">search</i>
+       			</label>
+        		<div class="mdl-textfield__expandable-holder">
+          		<input class="mdl-textfield__input" type="text" name="sample"
+                 id="fixed-header-drawer-exp">
+        		</div>
+      		</div>
+            </div>
+
+				
             <!-- Navigation -->
+            
             <nav class="mdl-navigation">
                 <a href="" class="mdl-navigation__link">
                     <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color--teal"><img
@@ -47,7 +89,9 @@
             <a class="mdl-navigation__link" href="">Link</a>
         </nav>
     </div>
+   
     <main class="mdl-layout__content">
+    	 
     </main>
 </div>
 </body>
