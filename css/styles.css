@@ -1,0 +1,37 @@
+body {
+    overflow: hidden;
+}
+
+.mdl-layout--fixed-header {
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.mdl-layout__drawer {
+    z-index: 1;
+    top: 64px;
+
+}
+
+.mdl-layout__content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.demo-card-wide.mdl-card {
+    width: 512px;
+}
+
+.demo-card-wide > .mdl-card__title {
+    color: #fff;
+    height: 176px;
+    background: url('images/background.jpg') center / cover;
+}
+
+.demo-card-wide > .mdl-card__menu {
+    color: #fff;
+}

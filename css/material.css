@@ -11375,6 +11375,11 @@ fieldset[disabled] .mdl-switch .mdl-switch__ripple-container .mdl-ripple,
     text-align: right;
 }
 
+.mdl-textfield--align-left {
+    text-align: left;
+
+}
+
 .mdl-textfield--full-width {
     width: 100%;
 }
