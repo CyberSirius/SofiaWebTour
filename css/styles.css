@@ -37,6 +37,7 @@ body {
 #nav-icon1 {
     z-index: 3;
 }
+
 .mdl-layout__drawer {
     z-index: 2;
 }
@@ -55,13 +56,16 @@ body {
 }
 
 .mdl-layout__content {
+    z-index: 2;
     display: flex;
+    float: right;
     justify-content: center;
     align-items: center;
 }
 
 .demo-card-wide.mdl-card {
-    width: 512px;
+    width: 40%;
+    margin: 1%;
 }
 
 .demo-card-wide > .mdl-card__title {
