@@ -3,17 +3,55 @@ body {
 }
 
 .mdl-layout--fixed-header {
-    z-index: 2;
+    z-index: 3;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
+
 }
 
-.mdl-layout__drawer {
-    z-index: 1;
-    top: 64px;
+.mdl-layout__header-row {
+    z-index: 3;
+}
 
+@supports (pointer-events: auto) {
+    .mdl-layout__obfuscator {
+        background-color: rgba(0, 0, 0, 0);
+        opacity: 0;
+        transition-property: none;
+        visibility: hidden;
+        pointer-events: none;
+    }
+
+    .mdl-layout__obfuscator.is-visible {
+        pointer-events: none;
+        opacity: 1;
+    }
+}
+
+.mdl-layout__obfuscator.is-visible {
+    visibility: hidden;
+}
+
+#nav-icon1 {
+    z-index: 3;
+}
+.mdl-layout__drawer {
+    z-index: 2;
+}
+
+.mdl-layout__drawer > .mdl-layout-title {
+    top: 64px;
+}
+
+.mdl-layout__drawer > .mdl-navigation {
+    position: relative;
+    top: 64px;
+}
+
+.mdl-layout__drawer > .mdl-navigation > .mdl-navigation__link {
+    position: relative;
 }
 
 .mdl-layout__content {
@@ -29,7 +67,7 @@ body {
 .demo-card-wide > .mdl-card__title {
     color: #fff;
     height: 176px;
-    background: url('images/background.jpg') center / cover;
+    background: url('../images/background.jpg') center / cover;
 }
 
 .demo-card-wide > .mdl-card__menu {
