@@ -4,10 +4,10 @@ body {
 
 .mdl-layout--fixed-header {
     z-index: 3;
-    position: relative;
+    position: fixed;
     /*top: 0;*/
     /*left: 0;*/
-    /*width: 100%;*/
+    width: 100%;
 
 }
 
@@ -15,7 +15,7 @@ body {
 /*z-index: 3;*/
 /*}*/
 
-@supports (pointer-events: none) {
+@supports (pointer-events: auto) {
     .mdl-layout__obfuscator {
         background-color: rgba(0, 0, 0, 0);
         opacity: 0;
@@ -25,16 +25,17 @@ body {
     }
 
     .mdl-layout__obfuscator.is-visible {
-        pointer-events: none;
+        pointer-events: auto;
         opacity: 1;
     }
 }
 
 .mdl-layout__obfuscator.is-visible {
-    visibility: hidden;
+    display: none;
 }
 
 .mdl-layout__drawer {
+    position: fixed;
     z-index: 2;
 }
 
@@ -52,9 +53,13 @@ body {
 }
 
 .mdl-layout__content {
+
+    margin-top: 67px;
+    position: relative;
     height: 100%;
+    float: right;
     /*z-index: 2;*/
-    display: flex;
+    display: table;
     -webkit-transition: width 200ms;
 }
 
@@ -74,7 +79,7 @@ body {
 .landmark-card > .mdl-card__title {
     color: #fff;
     height: 300px;
-    width: 120%;
+    width: auto;
     -webkit-transition: all 0.3s linear 0s;
     -moz-transition: all 0.3s linear 0s;
     -ms-transition: all 0.3s linear 0s;
@@ -110,17 +115,20 @@ body {
 .landmark-card .mdl-card__title img {
     position: absolute;
     width: 100%;
+    margin: auto;
     top: 0;
     left: 0;
 }
 
 .landmark-card .mdl-card__title {
     position: relative;
+    height: 40%;
 }
 
 .landmark-card .mdl-card__title .mdl-card__title-text {
     z-index: 1;
     position: absolute;
+    width: auto;
     bottom: 0;
     right: 80px;
 }
