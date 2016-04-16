@@ -1,19 +1,21 @@
 body {
     overflow: hidden;
 }
+
 .mdl-layout--fixed-header {
     z-index: 3;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+    position: relative;
+    /*top: 0;*/
+    /*left: 0;*/
+    /*width: 100%;*/
 
 }
-.mdl-layout__header-row {
-    z-index: 3;
-}
 
-@supports (pointer-events: auto) {
+/*.mdl-layout__header-row {*/
+/*z-index: 3;*/
+/*}*/
+
+@supports (pointer-events: none) {
     .mdl-layout__obfuscator {
         background-color: rgba(0, 0, 0, 0);
         opacity: 0;
@@ -32,12 +34,7 @@ body {
     visibility: hidden;
 }
 
-#nav-icon1 {
-    z-index: 3;
-}
-
 .mdl-layout__drawer {
-    position: fixed;
     z-index: 2;
 }
 
@@ -55,22 +52,22 @@ body {
 }
 
 .mdl-layout__content {
-    display: table;
-    z-index: 2;
-    float: right;
-    width: 80%;
-    margin-top: 200px;
-    margin-left: 200px;;
-    justify-content: center;
-    align-items: center;
+    height: 100%;
+    /*z-index: 2;*/
+    display: flex;
     -webkit-transition: width 200ms;
 }
 
+.mdl-grid {
+    position: relative;
+    width: 80%;
+}
+
 .landmark-card.mdl-card {
-    width: 30%;
-    margin: 1%;
+
+    width: 100%;
+    margin: 1% 1% 20px;
     height: 470px;
-    float: left;
     -webkit-transition: all 0.3s linear 0s;
 }
 
@@ -136,9 +133,4 @@ body {
     z-index: 2;
     position: absolute;
     bottom: 0;
-}
-
-.card-holder {
-    display: table-row;
-    width: 100%;
 }
