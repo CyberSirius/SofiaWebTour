@@ -1,7 +1,6 @@
 body {
     overflow: hidden;
 }
-
 .mdl-layout--fixed-header {
     z-index: 3;
     position: fixed;
@@ -10,7 +9,6 @@ body {
     width: 100%;
 
 }
-
 .mdl-layout__header-row {
     z-index: 3;
 }
@@ -39,6 +37,7 @@ body {
 }
 
 .mdl-layout__drawer {
+    position: fixed;
     z-index: 2;
 }
 
@@ -56,18 +55,22 @@ body {
 }
 
 .mdl-layout__content {
+    display: table;
     z-index: 2;
-    display: flex;
     float: right;
+    width: 80%;
+    margin-top: 200px;
+    margin-left: 200px;;
     justify-content: center;
     align-items: center;
     -webkit-transition: width 200ms;
 }
 
 .landmark-card.mdl-card {
-    width: 25%;
+    width: 30%;
     margin: 1%;
     height: 470px;
+    float: left;
     -webkit-transition: all 0.3s linear 0s;
 }
 
@@ -133,4 +136,9 @@ body {
     z-index: 2;
     position: absolute;
     bottom: 0;
+}
+
+.card-holder {
+    display: table-row;
+    width: 100%;
 }

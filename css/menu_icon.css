@@ -1,6 +1,7 @@
 /* Icon 1 */
 
 #nav-icon1 {
+    position: fixed;
     z-index: 5;
     width: 20px;
     height: 15px;
@@ -69,6 +70,5 @@
 }
 
 .search-pos {
-
     left: 50px;
 }
