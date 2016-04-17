@@ -3,7 +3,7 @@ body {
 }
 
 .mdl-layout--fixed-header {
-    z-index: 3;
+    z-index: 6;
     position: fixed;
     /*top: 0;*/
     /*left: 0;*/
@@ -24,19 +24,19 @@ body {
         pointer-events: none;
     }
 
-    .mdl-layout__obfuscator.is-visible {
-        pointer-events: auto;
-        opacity: 1;
-    }
-}
+/*     .mdl-layout__obfuscator.is-visible { */
+/*         pointer-events: auto; */
+/*         opacity: 1; */
+/*     } */
+/* } */
 
-.mdl-layout__obfuscator.is-visible {
-    display: none;
-}
+/* .mdl-layout__obfuscator.is-visible { */
+/*     display: none; */
+/* } */
 
 .mdl-layout__drawer {
     position: fixed;
-    z-index: 2;
+    z-index: 5;
 }
 
 .mdl-layout__drawer > .mdl-layout-title {
@@ -143,4 +143,9 @@ body {
     z-index: 2;
     position: absolute;
     bottom: 0;
+}
+
+#main_content {
+	padding-top: 7%;
+	overload: hidden;
 }

@@ -7,6 +7,6 @@ function changeClass() {
     }
     else {
         document.getElementById("nav-icon1").className += " open";
-        document.getElementById("main_content").style.marginLeft = "150px";
+        document.getElementById("main_content").style.marginLeft = "250px";
     }
 }
