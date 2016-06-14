@@ -22,6 +22,8 @@
 	<link rel="stylesheet" type="text/css" href="css/demo.css" />
 	<link rel="stylesheet" type="text/css" href="css/card.css" />
 	<link rel="stylesheet" type="text/css" href="css/pattern.css" />
+    <link rel="stylesheet" type="text/css" href="css/dialog-polyfill.css" />
+    <script src="js/dialog-polyfill.js"></script>
 	<script src="js/vendors/trianglify.min.js"></script>
 	<script src="js/vendors/TweenMax.min.js"></script>
 	<script src="js/vendors/ScrollToPlugin.min.js"></script>
@@ -67,24 +69,55 @@
                     </div>
                 </form>
             </div>
-
             <nav class="mdl-navigation">
-                <button id="button_language"
-                        class="mdl-navigation__link mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                <button id="button_language" class="mdl-navigation__link mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
                     <i class="material-icons">language</i>
                 </button>
                 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-jd-ripple-effect" for="button_language">
                     <li class="mdl-menu__item">BG</li>
                     <li class="mdl-menu__item">EN</li>
                 </ul>
-                <button id="button_account"
-                        class="mdl-navigation__link mdl-button mdl-js-button mdl-js-ripple-effect text-primary-color default-primary-color mdl-button--icon">
+                <button type="button" id="button_account" class="mdl-button show-login-modal mdl-navigation__link mdl-button mdl-js-button mdl-js-ripple-effect text-primary-color default-primary-color mdl-button--icon">
                     <i class="material-icons">account_circle</i>
                 </button>
+                <dialog class="mdl-dialog register-form">
+                    <main class="mdl-layout__content">
+                        <div class="mdl-dialog__content mdl-card mdl-shadow--6dp">
+                            <div class="mdl-card__title default-primary-color mdl-color-text--white">
+                                <h2 class="mdl-card__title-text">Sofia Web Tour</h2>
+                            </div>
+                            <form action="#" method="dialog">
+                                <div class="mdl-textfield mdl-js-textfield">
+                                    <input class="mdl-textfield__input" type="text" id="username" />
+                                    <label class="mdl-textfield__label" for="username">Username</label>
+                                </div>
+                                <div class="mdl-textfield mdl-js-textfield">
+                                    <input class="mdl-textfield__input" type="password" id="userpass" />
+                                    <label class="mdl-textfield__label" for="userpass">Password</label>
+                                </div>
+                                <div class="reg-reenter mdl-textfield mdl-js-textfield">
+                                    <input class="mdl-textfield__input" type="password" id="userpass" />
+                                    <label class="mdl-textfield__label" for="userpass">Re-enter Password</label>
+                                </div>
+                                <div class="reg-email mdl-textfield mdl-js-textfield">
+                                    <input class="mdl-textfield__input" type="password" id="userpass" />
+                                    <label class="mdl-textfield__label" for="userpass">E-mail</label>
+                                </div>
+                            </form>
+                            <div class="mdl-dialog__actions mdl-card__actions">
+                                <button class="mdl-button close mdl-js-button mdl-js-ripple-effect">Close</button>
+                                <button class="show-register-fields mdl-button mdl-js-button mdl-js-ripple-effect">Register</button>
+                                <button class="show-login-fields mdl-button mdl-js-button mdl-js-ripple-effect">Log in</button>
+                            </div>
+                        </div>
+                    </main>
+                </dialog>
+                <!--
                 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-jd-ripple-effect" for="button_account">
-                    <li class="mdl-menu__item">Log in</li>
-                    <li class="mdl-menu__item">Register</li>
+                        <li class="mdl-menu__item">Log in</li>
+                        <li class="mdl-menu__item">Register</li>
                 </ul>
+                -->
             </nav>
         </div>
     </header>
@@ -337,5 +370,6 @@
 		
 	</div>
 </div>
+<script src="js/login-dialog.js"></script>
 </body>
 </html>
