@@ -25,7 +25,7 @@ body {
     }
 
     .mdl-layout__obfuscator.is-visible {
-		position: fixed;
+        position: fixed;
     }
 }
 
@@ -141,8 +141,8 @@ body {
 }
 
 #main_container {
-	padding-top: 7%;
-	overload: hidden;
+    padding-top: 7%;
+    overload: hidden;
 }
 
 dialog.register-form {

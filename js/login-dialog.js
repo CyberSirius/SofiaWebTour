@@ -19,12 +19,12 @@ var loginBtn = document.querySelector('.show-login-fields');
 regReenter.style.display = 'none';
 regEmail.style.display = 'none';
 
-regBtn.addEventListener('click', function() {
+regBtn.addEventListener('click', function () {
     regReenter.style.display = 'block';
     regEmail.style.display = 'block';
 });
 
-loginBtn.addEventListener('click', function() {
+loginBtn.addEventListener('click', function () {
     regReenter.style.display = 'none';
     regEmail.style.display = 'none';
 });

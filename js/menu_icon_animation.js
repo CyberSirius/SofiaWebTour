@@ -1,6 +1,6 @@
 function changeClass() {
-	
-	var getClassOf = Function.prototype.call.bind(Object.prototype.toString);
+
+    var getClassOf = Function.prototype.call.bind(Object.prototype.toString);
 	
     if (document.getElementById("nav-icon1").className.match(/(?:^|\s)open(?!\S)/)) {
         document.getElementById("nav-icon1").className =
@@ -8,11 +8,11 @@ function changeClass() {
             (/(?:^|\s)open(?!\S)/g, '')
         document.getElementById("main_container").style.marginLeft = "0px";
         var cards = document.getElementsByClassName("card__container");
-        for (i = 0; i < cards.length; i++) { 
-       	 if(!hasClass(cards[i], "card__container--closed")){
-            	cards[i].style.marginLeft = "0px";
+        for (i = 0; i < cards.length; i++) {
+            if (!hasClass(cards[i], "card__container--closed")) {
+                cards[i].style.marginLeft = "0px";
             }
-       }
+        }
     }
     else {
         document.getElementById("nav-icon1").className += " open";
@@ -22,10 +22,10 @@ function changeClass() {
         var layout = document.getElementById("layout");
         obf[0].style.height = layout.offsetHeight;
         var cards = document.getElementsByClassName("card__container");
-        for (i = 0; i < cards.length; i++) { 
-        	 if(!hasClass(cards[i], "card__container--closed")){
-             	cards[i].style.marginLeft = "150px";
-             }
+        for (i = 0; i < cards.length; i++) {
+            if (!hasClass(cards[i], "card__container--closed")) {
+                cards[i].style.marginLeft = "150px";
+            }
         }
        
     }
@@ -36,9 +36,9 @@ function hasClass(element, cls) {
 }
 
 function addMethodToObf() {
-	
-	var obf = document.getElementsByClassName("mdl-layout__obfuscator");
-	obf[0].addEventListener("click", changeClass);
+
+    var obf = document.getElementsByClassName("mdl-layout__obfuscator");
+    obf[0].addEventListener("click", changeClass);
 }
 
 
