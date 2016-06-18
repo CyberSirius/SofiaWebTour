@@ -27,8 +27,9 @@ body {
 	font-family: Avenir, 'Helvetica Neue', 'Lato', 'Segoe UI', Helvetica, Arial, sans-serif;
 	line-height: 1.5;
 	color: #3b393d;
-   	background: #e0e0e0;
-	background-size: cover;
+   	background-color: #ff80c0;
+   	background-image: url('../images/grey.jpg');
+   	background-size: cover;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	overflow: hidden;
