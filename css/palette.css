@@ -5,7 +5,10 @@
 }
 
 .default-primary-color {
-    background: #009688;
+/*      background: #000; */
+/*      opacity: 0.5; */
+	background-image: url('../images/night.jpg');
+	background-size: cover;
 }
 
 .light-primary-color {
@@ -17,7 +20,7 @@
 }
 
 .accent-color {
-    background: #FF5722;
+    background: #fff;
 }
 
 .primary-text-color {

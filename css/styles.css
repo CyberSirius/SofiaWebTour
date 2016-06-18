@@ -8,6 +8,7 @@ body {
     /*top: 0;*/
     /*left: 0;*/
     width: 100%;
+    background-image: url('../images/night.jpg') no-repeat !important ;
 
 }
 
@@ -161,4 +162,7 @@ dialog.register-form {
 
 .register-form .mdl-dialog__content {
     width: 368px;
+}
+.mdl-textfield__label {
+	color: #404040!important;
 }
