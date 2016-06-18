@@ -7,6 +7,7 @@
 	height: 0;
 	margin: 2%;
 	padding-bottom: 20%;
+
 }
 
 .card__container {
@@ -19,7 +20,6 @@
 	height: 100%;
 	-webkit-transform: translate3d(0, 0, 0);
 	/* prevents flicker */
-
 	-webkit-overflow-scrolling: touch;
 }
 
@@ -41,6 +41,8 @@
 
 .card__container--closed .card__image {
 	cursor: pointer;
+	-webkit-mask-image: -webkit-gradient(linear, left 70%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+
 }
 
 .card__content {
@@ -58,6 +60,7 @@
 	padding: 5px 16px;
 	pointer-events: none;
 	background: transparent;
+
 }
 
 .card__caption {

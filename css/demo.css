@@ -27,13 +27,25 @@ body {
 	font-family: Avenir, 'Helvetica Neue', 'Lato', 'Segoe UI', Helvetica, Arial, sans-serif;
 	line-height: 1.5;
 	color: #3b393d;
-   	background-color: #ff80c0;
-   	background-image: url('../images/grey.jpg');
-   	background-size: cover;
+   	/*background-image: url('../images/grey.jpg');*/
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+14,000000+49,4c4c4c+100 */
+    background-image: url('../images/night.jpg');
+    background-size: cover;
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#050505', endColorstr='#4c4c4c',GradientType=0 ); /* IE6-9 */
+
+
+
+
+
+
+
+
+
+
+    background-size: cover;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	overflow: hidden;
-	overflow-y: scroll;
 }
 
 body.body--hidden {

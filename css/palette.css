@@ -9,6 +9,7 @@
 /*      opacity: 0.5; */
 	background-image: url('../images/night.jpg');
 	background-size: cover;
+   /* background-color: #000;*/
 }
 
 .light-primary-color {
