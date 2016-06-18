@@ -27,7 +27,7 @@ body {
 	font-family: Avenir, 'Helvetica Neue', 'Lato', 'Segoe UI', Helvetica, Arial, sans-serif;
 	line-height: 1.5;
 	color: #3b393d;
-	background: #f0f0f0;
+   	background: #e0e0e0;
 	background-size: cover;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -52,7 +52,7 @@ body.body--hidden .content--related {
 
 a {
 	text-decoration: none;
-	color: #de6551;
+	color: #ff0000;
 	outline: none;
 }
 

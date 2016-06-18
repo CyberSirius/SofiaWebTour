@@ -49,8 +49,8 @@
 	height: auto;
 	margin: 0 auto;
 	padding: 30px 40px 22px;
-	color: #888;
-	background: #fff;
+	color: #fff;
+	background: #000;
 }
 
 .card__container--closed .card__content {
@@ -80,7 +80,7 @@
 	font-size: 1.5em;
 	line-height: 1;
 	margin: 5px 0 0 0;
-	color: #3b393d;
+	color: #fff;
 }
 
 .card__container--closed .card__title {
@@ -91,7 +91,7 @@
 	font-size: .95em;
 	line-height: 1;
 	margin: 5px 0 0;
-	color: #777778;
+	color: #fff;
 }
 
 .card__container--closed .card__subtitle {
@@ -103,7 +103,7 @@
 	max-width: 900px;
 	margin: 0 auto;
 	padding: 25px 30px 100px;
-	color: #3b393d;
+	color: #fff;
 }
 
 .card__copy p:first-of-type {
@@ -118,6 +118,7 @@
 	right: 0;
 	padding: 36px;
 	cursor: pointer;
+	color: #fff;
 }
 
 .card__container--closed .card__btn-close {
