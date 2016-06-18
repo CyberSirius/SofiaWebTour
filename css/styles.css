@@ -24,14 +24,10 @@ body {
         pointer-events: none;
     }
 
-    /*     .mdl-layout__obfuscator.is-visible { */
-    /*         pointer-events: auto; */
-    /*         opacity: 1; */
-    /*     } */
-    /* } */
-    /* .mdl-layout__obfuscator.is-visible { */
-    /*     display: none; */
-    /* } */
+    .mdl-layout__obfuscator.is-visible {
+		position: fixed;
+    }
+}
 
 .mdl-layout__drawer {
     position: fixed;
@@ -144,7 +140,25 @@ body {
     bottom: 0;
 }
 
-    #main_content {
-        padding-top: 7%;
-        overload: hidden;
-    }
+#main_container {
+	padding-top: 7%;
+	overload: hidden;
+}
+
+dialog.register-form {
+    background: transparent;
+    width: 20%;
+    height: 44%;
+}
+
+.inline {
+    display: inline;
+}
+
+.register-form button {
+    color: rgb(0, 150, 150);
+}
+
+.register-form .mdl-dialog__content {
+    width: 368px;
+}
