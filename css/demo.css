@@ -32,16 +32,6 @@ body {
     background-image: url('../images/night.jpg');
     background-size: cover;
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#050505', endColorstr='#4c4c4c',GradientType=0 ); /* IE6-9 */
-
-
-
-
-
-
-
-
-
-
     background-size: cover;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;

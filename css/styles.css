@@ -48,8 +48,8 @@ body {
 }
 
 .mdl-layout__content {
-
-    margin-top: 67px;
+    left: 46px;
+    margin-top: 0px;;
     position: relative;
     height: 100%;
     float: right;
@@ -156,7 +156,7 @@ dialog.register-form {
 }
 
 .register-form button {
-    color: rgb(0, 150, 150);
+    color: rgb(0, 0, 0);
 }
 
 .register-form .mdl-dialog__content {
