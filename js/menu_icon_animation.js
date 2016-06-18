@@ -5,7 +5,7 @@ function changeClass() {
     if (document.getElementById("nav-icon1").className.match(/(?:^|\s)open(?!\S)/)) {
         document.getElementById("nav-icon1").className =
             document.getElementById("nav-icon1").className.replace
-            (/(?:^|\s)open(?!\S)/g, '')
+            (/(?:^|\s)open(?!\S)/g, '');
         document.getElementById("main_container").style.marginLeft = "0px";
         var cards = document.getElementsByClassName("card__container");
         for (i = 0; i < cards.length; i++) {

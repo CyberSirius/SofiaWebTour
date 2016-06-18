@@ -39,8 +39,7 @@ var Card = (function (window, undefined) {
         this.isOpen = false;
 
         this._TL = null;
-    };
-
+    }
     /**
      * Open card.
      * @param {Function} callback The callback `onCardMove`.
@@ -116,7 +115,7 @@ var Card = (function (window, undefined) {
         var track = {
             width: 0,
             x: rect.left + (rect.width / 2),
-            y: rect.top + (rect.height / 2),
+            y: rect.top + (rect.height / 2)
         };
 
         TL.set(this._container, {

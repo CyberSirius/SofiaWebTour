@@ -32,7 +32,7 @@
      * This works around an IE9/10 bug - blurring the body causes Windows to
      * blur the whole application.
      *
-     * @param {Element} el to blur
+     * @param {DocumentView} el to blur
      */
     function safeBlur(el) {
         if (el && el.blur && el != document.body) {

@@ -3558,7 +3558,7 @@
      * @constructor
      * @param {HTMLElement} tab The HTML element for the tab.
      * @param {!Array<HTMLElement>} tabs Array with HTML elements for all tabs.
-     * @param {!Array<HTMLElement>} panels Array with HTML elements for all panels.
+     * @param {NodeList} panels Array with HTML elements for all panels.
      * @param {MaterialLayout} layout The MaterialLayout object that owns the tab.
      */
     function MaterialLayoutTab(tab, tabs, panels, layout) {
