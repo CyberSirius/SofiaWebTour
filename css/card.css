@@ -11,6 +11,7 @@
 }
 
 .card__container {
+	padding-top: 64px;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -24,6 +25,7 @@
 }
 
 .card__container--closed {
+	padding-top: 0px;
 	position: absolute;
 	overflow: hidden;
 	background: #000;

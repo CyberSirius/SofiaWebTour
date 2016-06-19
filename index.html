@@ -45,23 +45,46 @@
         }
         function clickToggle() {
             var isToggled = document.getElementById("switch-2").checked;
+
             if (isToggled) {
                 $(".background").css("background", "rgb(0,22,43)");
-                $(".style-day").each(function(){
+                $(".style-day").each(function () {
                     $(this).removeClass("style-day");
                     $(this).addClass("style-night");
                 });
                 $("#nav-icon1 span").css("background", "yellow");
+                changePicture(false);
 
             }
             else {
                 $(".background").css("background", "teal");
-                $(".style-night").each(function(){
+                $(".style-night").each(function () {
                     $(this).removeClass("style-night");
                     $(this).addClass("style-day");
                 });
                 $("#nav-icon1 span").css("background", "darkorange");
+                changePicture(true);
             }
+        }
+        function changePicture(isDay) {
+            if (!isDay) {
+                $(".landmark_image").each(function () {
+                    var xlink = $(this).attr("xlink:href");
+                    console.log($(this).src);
+                    xlink = xlink.replace("day", "night");
+                    $(this).attr("xlink:href", xlink);
+
+                });
+            }
+            else {
+                $(".landmark_image").each(function () {
+                    var xlink = $(this).attr("xlink:href");
+                    xlink = xlink.replace("night", "day");
+                    $(this).attr("xlink:href", xlink);
+
+                });
+            }
+
         }
     </script>
 
@@ -185,7 +208,7 @@
                                 </clipPath>
                             </defs>
                             <image clip-path="url(#clipPath1)" width="1920" height="500"
-                                   xlink:href="images/ndk.jpg"></image>
+                                   xlink:href="images/day/ndk.jpg" class="landmark_image"></image>
                         </svg>
                         <div class="card__content style-day">
                             <i class="card__btn-close fa fa-times"></i>
@@ -214,7 +237,7 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card__container card__container--closed">
+                    <div class="card__container card__container--closed" onclick="clickFunction(this)">
                         <svg xmlns:xlink="http://www.w3.org/1999/xlink" class="card__image"
                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 500"
                              preserveAspectRatio="xMidYMid slice">
@@ -224,53 +247,37 @@
                                     <circle class="clip" cx="960" cy="250" r="992"></circle>
                                 </clipPath>
                             </defs>
-                            <image clip-path="url(#clipPath2)" width="1920" height="500" xlink:href="img/b.jpg"></image>
+                            <image clip-path="url(#clipPath2)" width="1920" height="500"
+                                   xlink:href="images/day/bib.jpg" class="landmark_image"></image>
                         </svg>
                         <div class="card__content style-day">
                             <i class="card__btn-close fa fa-times"></i>
                             <div class="card__caption">
-                                <h2 class="card__title">About Helen</h2>
-                                <p class="card__subtitle">A story about a woman</p>
+                                <h2 class="card__title">Национален дворец на културата</h2>
+                                <p class="card__subtitle">Сърцето на София</p>
                             </div>
                             <div class="card__copy">
                                 <div class="meta">
-                                    <img class="meta__avatar" src="img/authors/2.png" alt="author02"/>
-                                    <span class="meta__author">Frank Posterius</span>
-                                    <span class="meta__date">06/16/2015</span>
+                                    <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0"
+                                            marginwidth="0"
+                                            src="http://maps.google.ca/maps?f=q&amp;q=НДК&amp;output=embed"></iframe>
+                                    <br/>
+                                    <span class="meta__date">Работно време: 12:00 - 00:00</span>
                                 </div>
-                                <p>Business model canvas bootstrapping deployment startup. In A/B testing pivot niche
-                                    market alpha conversion startup down monetization partnership business-to-consumer
-                                    success for investor mass market business-to-business.</p>
-                                <p>Release creative social proof influencer iPad crowdsource gamification learning curve
-                                    network effects monetization. Gamification business plan mass market
-                                    www.discoverartisans.com direct mailing ecosystem seed round sales long tail vesting
-                                    period.</p>
-                                <p>Product management ramen bootstrapping seed round venture holy grail technology
-                                    backing partner network entrepreneur beta marketing value proposition. Android
-                                    stealth conversion scrum project network effects. Creative alpha long tail
-                                    conversion stealth growth hacking iteration investor A/B testing prototype customer.
-                                    Startup www.discoverartisans.com direct mailing launch party partnership market
-                                    ramen metrics focus value proposition.</p>
-                                <p>Stock infrastructure seed round sales paradigm shift technology user experience focus
-                                    gamification. Partnership metrics business plan stealth business-to-business.
-                                    Deployment graphical user interface monetization. Twitter incubator scrum project
-                                    entrepreneur branding burn rate ramen backing paradigm shift virality
-                                    crowdsource.</p>
-                                <p>Social proof MVP ecosystem. Ramen launch party pitch deployment stealth. Vesting
-                                    period MVP equity. Focus creative partnership founders iteration agile development
-                                    infographic.</p>
-                                <p>Low hanging fruit burn rate innovator user experience niche market A/B testing
-                                    creative launch party product management release. Www.discoverartisans.com
-                                    influencer business model canvas user experience gamification paradigm shift startup
-                                    research &amp; development iPad agile development. Strategy incubator infographic
-                                    success marketing buzz A/B testing responsive web design. Traction research &amp;
-                                    development pitch seed money venture niche market accelerator network effects.</p>
+                                <p>Националният дворец на културата, известен и с краткото НДК</p>
+                                <p>(наименование до 1990 г. – Народен дворец на културата „Людмила Живкова“, на
+                                    името</p>
+                                <p>на Людмила Живкова, която дава идеята за създаването му), е национален културен
+                                    център за</p>
+                                <p>конференции, изложби и специални събития, най-големият конгресен център в Югоизточна
+                                    Европа...</p>
+
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card__container card__container--closed">
+                    <div class="card__container card__container--closed" onclick="clickFunction(this)">
                         <svg xmlns:xlink="http://www.w3.org/1999/xlink" class="card__image"
                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 500"
                              preserveAspectRatio="xMidYMid slice">
@@ -280,53 +287,37 @@
                                     <circle class="clip" cx="960" cy="250" r="992"></circle>
                                 </clipPath>
                             </defs>
-                            <image clip-path="url(#clipPath3)" width="1920" height="500" xlink:href="img/c.jpg"></image>
+                            <image clip-path="url(#clipPath3)" width="1920" height="500"
+                                   xlink:href="images/day/naroden.jpg" class="landmark_image"></image>
                         </svg>
-                        <div class="card__content">
+                        <div class="card__content style-day">
                             <i class="card__btn-close fa fa-times"></i>
                             <div class="card__caption">
-                                <h2 class="card__title">A mild winter</h2>
-                                <p class="card__subtitle">Helen's view on wells</p>
+                                <h2 class="card__title">Национален дворец на културата</h2>
+                                <p class="card__subtitle">Сърцето на София</p>
                             </div>
                             <div class="card__copy">
                                 <div class="meta">
-                                    <img class="meta__avatar" src="img/authors/3.png" alt="author03"/>
-                                    <span class="meta__author">Sarah Lester</span>
-                                    <span class="meta__date">06/16/2015</span>
+                                    <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0"
+                                            marginwidth="0"
+                                            src="http://maps.google.ca/maps?f=q&amp;q=НДК&amp;output=embed"></iframe>
+                                    <br/>
+                                    <span class="meta__date">Работно време: 12:00 - 00:00</span>
                                 </div>
-                                <p>Business model canvas bootstrapping deployment startup. In A/B testing pivot niche
-                                    market alpha conversion startup down monetization partnership business-to-consumer
-                                    success for investor mass market business-to-business.</p>
-                                <p>Release creative social proof influencer iPad crowdsource gamification learning curve
-                                    network effects monetization. Gamification business plan mass market
-                                    www.discoverartisans.com direct mailing ecosystem seed round sales long tail vesting
-                                    period.</p>
-                                <p>Product management ramen bootstrapping seed round venture holy grail technology
-                                    backing partner network entrepreneur beta marketing value proposition. Android
-                                    stealth conversion scrum project network effects. Creative alpha long tail
-                                    conversion stealth growth hacking iteration investor A/B testing prototype customer.
-                                    Startup www.discoverartisans.com direct mailing launch party partnership market
-                                    ramen metrics focus value proposition.</p>
-                                <p>Stock infrastructure seed round sales paradigm shift technology user experience focus
-                                    gamification. Partnership metrics business plan stealth business-to-business.
-                                    Deployment graphical user interface monetization. Twitter incubator scrum project
-                                    entrepreneur branding burn rate ramen backing paradigm shift virality
-                                    crowdsource.</p>
-                                <p>Social proof MVP ecosystem. Ramen launch party pitch deployment stealth. Vesting
-                                    period MVP equity. Focus creative partnership founders iteration agile development
-                                    infographic.</p>
-                                <p>Low hanging fruit burn rate innovator user experience niche market A/B testing
-                                    creative launch party product management release. Www.discoverartisans.com
-                                    influencer business model canvas user experience gamification paradigm shift startup
-                                    research &amp; development iPad agile development. Strategy incubator infographic
-                                    success marketing buzz A/B testing responsive web design. Traction research &amp;
-                                    development pitch seed money venture niche market accelerator network effects.</p>
+                                <p>Националният дворец на културата, известен и с краткото НДК</p>
+                                <p>(наименование до 1990 г. – Народен дворец на културата „Людмила Живкова“, на
+                                    името</p>
+                                <p>на Людмила Живкова, която дава идеята за създаването му), е национален културен
+                                    център за</p>
+                                <p>конференции, изложби и специални събития, най-големият конгресен център в Югоизточна
+                                    Европа...</p>
+
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card__container card__container--closed">
+                    <div class="card__container card__container--closed" onclick="clickFunction(this)">
                         <svg xmlns:xlink="http://www.w3.org/1999/xlink" class="card__image"
                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 500"
                              preserveAspectRatio="xMidYMid slice">
@@ -336,53 +327,37 @@
                                     <circle class="clip" cx="960" cy="250" r="992"></circle>
                                 </clipPath>
                             </defs>
-                            <image clip-path="url(#clipPath4)" width="1920" height="500" xlink:href="img/d.jpg"></image>
+                            <image clip-path="url(#clipPath4)" width="1920" height="500"
+                                   xlink:href="images/day/narodno.jpg" class="landmark_image"></image>
                         </svg>
-                        <div class="card__content">
+                        <div class="card__content style-day">
                             <i class="card__btn-close fa fa-times"></i>
                             <div class="card__caption">
-                                <h2 class="card__title">Food sources</h2>
-                                <p class="card__subtitle">What will we eat in 30 years?</p>
+                                <h2 class="card__title">Национален дворец на културата</h2>
+                                <p class="card__subtitle">Сърцето на София</p>
                             </div>
                             <div class="card__copy">
                                 <div class="meta">
-                                    <img class="meta__avatar" src="img/authors/4.png" alt="author04"/>
-                                    <span class="meta__author">Lena Bestofos</span>
-                                    <span class="meta__date">06/14/2015</span>
+                                    <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0"
+                                            marginwidth="0"
+                                            src="http://maps.google.ca/maps?f=q&amp;q=НДК&amp;output=embed"></iframe>
+                                    <br/>
+                                    <span class="meta__date">Работно време: 12:00 - 00:00</span>
                                 </div>
-                                <p>Business model canvas bootstrapping deployment startup. In A/B testing pivot niche
-                                    market alpha conversion startup down monetization partnership business-to-consumer
-                                    success for investor mass market business-to-business.</p>
-                                <p>Release creative social proof influencer iPad crowdsource gamification learning curve
-                                    network effects monetization. Gamification business plan mass market
-                                    www.discoverartisans.com direct mailing ecosystem seed round sales long tail vesting
-                                    period.</p>
-                                <p>Product management ramen bootstrapping seed round venture holy grail technology
-                                    backing partner network entrepreneur beta marketing value proposition. Android
-                                    stealth conversion scrum project network effects. Creative alpha long tail
-                                    conversion stealth growth hacking iteration investor A/B testing prototype customer.
-                                    Startup www.discoverartisans.com direct mailing launch party partnership market
-                                    ramen metrics focus value proposition.</p>
-                                <p>Stock infrastructure seed round sales paradigm shift technology user experience focus
-                                    gamification. Partnership metrics business plan stealth business-to-business.
-                                    Deployment graphical user interface monetization. Twitter incubator scrum project
-                                    entrepreneur branding burn rate ramen backing paradigm shift virality
-                                    crowdsource.</p>
-                                <p>Social proof MVP ecosystem. Ramen launch party pitch deployment stealth. Vesting
-                                    period MVP equity. Focus creative partnership founders iteration agile development
-                                    infographic.</p>
-                                <p>Low hanging fruit burn rate innovator user experience niche market A/B testing
-                                    creative launch party product management release. Www.discoverartisans.com
-                                    influencer business model canvas user experience gamification paradigm shift startup
-                                    research &amp; development iPad agile development. Strategy incubator infographic
-                                    success marketing buzz A/B testing responsive web design. Traction research &amp;
-                                    development pitch seed money venture niche market accelerator network effects.</p>
+                                <p>Националният дворец на културата, известен и с краткото НДК</p>
+                                <p>(наименование до 1990 г. – Народен дворец на културата „Людмила Живкова“, на
+                                    името</p>
+                                <p>на Людмила Живкова, която дава идеята за създаването му), е национален културен
+                                    център за</p>
+                                <p>конференции, изложби и специални събития, най-големият конгресен център в Югоизточна
+                                    Европа...</p>
+
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card__container card__container--closed">
+                    <div class="card__container card__container--closed" onclick="clickFunction(this)">
                         <svg xmlns:xlink="http://www.w3.org/1999/xlink" class="card__image"
                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 500"
                              preserveAspectRatio="xMidYMid slice">
@@ -392,53 +367,37 @@
                                     <circle class="clip" cx="960" cy="250" r="992"></circle>
                                 </clipPath>
                             </defs>
-                            <image clip-path="url(#clipPath5)" width="1920" height="500" xlink:href="img/e.jpg"></image>
+                            <image clip-path="url(#clipPath5)" width="1920" height="500"
+                                   xlink:href="images/day/nevski.jpg" class="landmark_image"></image>
                         </svg>
-                        <div class="card__content">
+                        <div class="card__content style-day">
                             <i class="card__btn-close fa fa-times"></i>
                             <div class="card__caption">
-                                <h2 class="card__title">Swimming in the ocean</h2>
-                                <p class="card__subtitle">A Makrel's story</p>
+                                <h2 class="card__title">Национален дворец на културата</h2>
+                                <p class="card__subtitle">Сърцето на София</p>
                             </div>
                             <div class="card__copy">
                                 <div class="meta">
-                                    <img class="meta__avatar" src="img/authors/5.png" alt="author05"/>
-                                    <span class="meta__author">Michaela Walters</span>
-                                    <span class="meta__date">06/11/2015</span>
+                                    <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0"
+                                            marginwidth="0"
+                                            src="http://maps.google.ca/maps?f=q&amp;q=НДК&amp;output=embed"></iframe>
+                                    <br/>
+                                    <span class="meta__date">Работно време: 12:00 - 00:00</span>
                                 </div>
-                                <p>Business model canvas bootstrapping deployment startup. In A/B testing pivot niche
-                                    market alpha conversion startup down monetization partnership business-to-consumer
-                                    success for investor mass market business-to-business.</p>
-                                <p>Release creative social proof influencer iPad crowdsource gamification learning curve
-                                    network effects monetization. Gamification business plan mass market
-                                    www.discoverartisans.com direct mailing ecosystem seed round sales long tail vesting
-                                    period.</p>
-                                <p>Product management ramen bootstrapping seed round venture holy grail technology
-                                    backing partner network entrepreneur beta marketing value proposition. Android
-                                    stealth conversion scrum project network effects. Creative alpha long tail
-                                    conversion stealth growth hacking iteration investor A/B testing prototype customer.
-                                    Startup www.discoverartisans.com direct mailing launch party partnership market
-                                    ramen metrics focus value proposition.</p>
-                                <p>Stock infrastructure seed round sales paradigm shift technology user experience focus
-                                    gamification. Partnership metrics business plan stealth business-to-business.
-                                    Deployment graphical user interface monetization. Twitter incubator scrum project
-                                    entrepreneur branding burn rate ramen backing paradigm shift virality
-                                    crowdsource.</p>
-                                <p>Social proof MVP ecosystem. Ramen launch party pitch deployment stealth. Vesting
-                                    period MVP equity. Focus creative partnership founders iteration agile development
-                                    infographic.</p>
-                                <p>Low hanging fruit burn rate innovator user experience niche market A/B testing
-                                    creative launch party product management release. Www.discoverartisans.com
-                                    influencer business model canvas user experience gamification paradigm shift startup
-                                    research &amp; development iPad agile development. Strategy incubator infographic
-                                    success marketing buzz A/B testing responsive web design. Traction research &amp;
-                                    development pitch seed money venture niche market accelerator network effects.</p>
+                                <p>Националният дворец на културата, известен и с краткото НДК</p>
+                                <p>(наименование до 1990 г. – Народен дворец на културата „Людмила Живкова“, на
+                                    името</p>
+                                <p>на Людмила Живкова, която дава идеята за създаването му), е национален културен
+                                    център за</p>
+                                <p>конференции, изложби и специални събития, най-големият конгресен център в Югоизточна
+                                    Европа...</p>
+
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card__container card__container--closed">
+                    <div class="card__container card__container--closed" onclick="clickFunction(this)">
                         <svg xmlns:xlink="http://www.w3.org/1999/xlink" class="card__image"
                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 500"
                              preserveAspectRatio="xMidYMid slice">
@@ -448,53 +407,37 @@
                                     <circle class="clip" cx="960" cy="250" r="992"></circle>
                                 </clipPath>
                             </defs>
-                            <image clip-path="url(#clipPath6)" width="1920" height="500" xlink:href="img/f.jpg"></image>
+                            <image clip-path="url(#clipPath6)" width="1920" height="500"
+                                   xlink:href="images/day/osvoboditel.jpg" class="landmark_image"></image>
                         </svg>
-                        <div class="card__content">
+                        <div class="card__content style-day">
                             <i class="card__btn-close fa fa-times"></i>
                             <div class="card__caption">
-                                <h2 class="card__title">Freedom Fighters</h2>
-                                <p class="card__subtitle">When it's too hot to think</p>
+                                <h2 class="card__title">Национален дворец на културата</h2>
+                                <p class="card__subtitle">Сърцето на София</p>
                             </div>
                             <div class="card__copy">
                                 <div class="meta">
-                                    <img class="meta__avatar" src="img/authors/6.png" alt="author06"/>
-                                    <span class="meta__author">Tom Goldman</span>
-                                    <span class="meta__date">06/10/2015</span>
+                                    <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0"
+                                            marginwidth="0"
+                                            src="http://maps.google.ca/maps?f=q&amp;q=НДК&amp;output=embed"></iframe>
+                                    <br/>
+                                    <span class="meta__date">Работно време: 12:00 - 00:00</span>
                                 </div>
-                                <p>Business model canvas bootstrapping deployment startup. In A/B testing pivot niche
-                                    market alpha conversion startup down monetization partnership business-to-consumer
-                                    success for investor mass market business-to-business.</p>
-                                <p>Release creative social proof influencer iPad crowdsource gamification learning curve
-                                    network effects monetization. Gamification business plan mass market
-                                    www.discoverartisans.com direct mailing ecosystem seed round sales long tail vesting
-                                    period.</p>
-                                <p>Product management ramen bootstrapping seed round venture holy grail technology
-                                    backing partner network entrepreneur beta marketing value proposition. Android
-                                    stealth conversion scrum project network effects. Creative alpha long tail
-                                    conversion stealth growth hacking iteration investor A/B testing prototype customer.
-                                    Startup www.discoverartisans.com direct mailing launch party partnership market
-                                    ramen metrics focus value proposition.</p>
-                                <p>Stock infrastructure seed round sales paradigm shift technology user experience focus
-                                    gamification. Partnership metrics business plan stealth business-to-business.
-                                    Deployment graphical user interface monetization. Twitter incubator scrum project
-                                    entrepreneur branding burn rate ramen backing paradigm shift virality
-                                    crowdsource.</p>
-                                <p>Social proof MVP ecosystem. Ramen launch party pitch deployment stealth. Vesting
-                                    period MVP equity. Focus creative partnership founders iteration agile development
-                                    infographic.</p>
-                                <p>Low hanging fruit burn rate innovator user experience niche market A/B testing
-                                    creative launch party product management release. Www.discoverartisans.com
-                                    influencer business model canvas user experience gamification paradigm shift startup
-                                    research &amp; development iPad agile development. Strategy incubator infographic
-                                    success marketing buzz A/B testing responsive web design. Traction research &amp;
-                                    development pitch seed money venture niche market accelerator network effects.</p>
+                                <p>Националният дворец на културата, известен и с краткото НДК</p>
+                                <p>(наименование до 1990 г. – Народен дворец на културата „Людмила Живкова“, на
+                                    името</p>
+                                <p>на Людмила Живкова, която дава идеята за създаването му), е национален културен
+                                    център за</p>
+                                <p>конференции, изложби и специални събития, най-големият конгресен център в Югоизточна
+                                    Европа...</p>
+
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card__container card__container--closed">
+                    <div class="card__container card__container--closed" onclick="clickFunction(this)">
                         <svg xmlns:xlink="http://www.w3.org/1999/xlink" class="card__image"
                              xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 500"
                              preserveAspectRatio="xMidYMid slice">
@@ -505,9 +448,9 @@
                                 </clipPath>
                             </defs>
                             <image clip-path="url(#clipPath7)" width="1920" height="500"
-                                   xlink:href="images/ndk.jpg"></image>
+                                   xlink:href="images/day/rektorat.jpg" class="landmark_image"></image>
                         </svg>
-                        <div class="card__content">
+                        <div class="card__content style-day">
                             <i class="card__btn-close fa fa-times"></i>
                             <div class="card__caption">
                                 <h2 class="card__title">Национален дворец на културата</h2>
@@ -515,9 +458,11 @@
                             </div>
                             <div class="card__copy">
                                 <div class="meta">
-                                    <img class="meta__avatar" src="img/authors/1.png" alt="author01"/>
-                                    <span class="meta__author">Гошо Пешов</span>
-                                    <span class="meta__date">06/19/2015</span>
+                                    <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0"
+                                            marginwidth="0"
+                                            src="http://maps.google.ca/maps?f=q&amp;q=НДК&amp;output=embed"></iframe>
+                                    <br/>
+                                    <span class="meta__date">Работно време: 12:00 - 00:00</span>
                                 </div>
                                 <p>Националният дворец на културата, известен и с краткото НДК</p>
                                 <p>(наименование до 1990 г. – Народен дворец на културата „Людмила Живкова“, на
@@ -526,6 +471,47 @@
                                     център за</p>
                                 <p>конференции, изложби и специални събития, най-големият конгресен център в Югоизточна
                                     Европа...</p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card__container card__container--closed" onclick="clickFunction(this)">
+                        <svg xmlns:xlink="http://www.w3.org/1999/xlink" class="card__image"
+                             xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 500"
+                             preserveAspectRatio="xMidYMid slice">
+                            <defs>
+                                <clipPath id="clipPath8">
+                                    <!-- r = 992 = hyp = Math.sqrt(960*960+250*250) -->
+                                    <circle class="clip" cx="960" cy="250" r="992"></circle>
+                                </clipPath>
+                            </defs>
+                            <image clip-path="url(#clipPath8)" width="1920" height="500"
+                                   xlink:href="images/day/samuil.jpg" class="landmark_image"></image>
+                        </svg>
+                        <div class="card__content style-day">
+                            <i class="card__btn-close fa fa-times"></i>
+                            <div class="card__caption">
+                                <h2 class="card__title">Национален дворец на културата</h2>
+                                <p class="card__subtitle">Сърцето на София</p>
+                            </div>
+                            <div class="card__copy">
+                                <div class="meta">
+                                    <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0"
+                                            marginwidth="0"
+                                            src="http://maps.google.ca/maps?f=q&amp;q=НДК&amp;output=embed"></iframe>
+                                    <br/>
+                                    <span class="meta__date">Работно време: 12:00 - 00:00</span>
+                                </div>
+                                <p>Националният дворец на културата, известен и с краткото НДК</p>
+                                <p>(наименование до 1990 г. – Народен дворец на културата „Людмила Живкова“, на
+                                    името</p>
+                                <p>на Людмила Живкова, която дава идеята за създаването му), е национален културен
+                                    център за</p>
+                                <p>конференции, изложби и специални събития, най-големият конгресен център в Югоизточна
+                                    Европа...</p>
+
                             </div>
                         </div>
                     </div>
