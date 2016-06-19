@@ -29,7 +29,8 @@ body {
 	color: #3b393d;
    	/*background-image: url('../images/grey.jpg');*/
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#000000+14,000000+49,4c4c4c+100 */
-    background-image: url('../images/night.jpg');
+    /*background-image: url('../images/night.jpg');*/
+	background-color: #ebebeb;
     background-size: cover;
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#050505', endColorstr='#4c4c4c',GradientType=0 ); /* IE6-9 */
     background-size: cover;

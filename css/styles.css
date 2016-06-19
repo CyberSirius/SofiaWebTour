@@ -8,7 +8,8 @@ body {
     /*top: 0;*/
     /*left: 0;*/
     width: 100%;
-
+    /*background-image: url('../images/nightv2.png');*/
+    background-color: teal;
 }
 
 /*.mdl-layout__header-row {*/
@@ -151,9 +152,6 @@ dialog.register-form {
     height: 44%;
 }
 
-.inline {
-    display: inline;
-}
 
 .register-form button {
     color: rgb(0, 0, 0);
@@ -164,4 +162,18 @@ dialog.register-form {
 }
 .mdl-textfield__label {
 	color: #404040!important;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+.mode_icon{
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 20px;
+}
+.switch{
+    margin-right: 5px;
+}
+.mdl-dialog__content .mdl-card__title{
+
 }
