@@ -47,20 +47,26 @@
             var isToggled = document.getElementById("switch-2").checked;
             if (isToggled) {
                 $(".background").css("background", "rgb(0,22,43)");
-                $("body").css("background-color", "rgb(14,45,74");
+                $(".style-day").each(function(){
+                    $(this).removeClass("style-day");
+                    $(this).addClass("style-night");
+                });
                 $("#nav-icon1 span").css("background", "yellow");
 
             }
             else {
                 $(".background").css("background", "teal");
-                $("body").css("background-color", "#ebebeb");
+                $(".style-night").each(function(){
+                    $(this).removeClass("style-night");
+                    $(this).addClass("style-day");
+                });
                 $("#nav-icon1 span").css("background", "darkorange");
             }
         }
     </script>
 
 </head>
-<body>
+<body class="style-day">
 <div class="mdl-layout mdl-js-layout" id="layout">
 
     <header class="mdl-layout--fixed-header background">
@@ -181,7 +187,7 @@
                             <image clip-path="url(#clipPath1)" width="1920" height="500"
                                    xlink:href="images/ndk.jpg"></image>
                         </svg>
-                        <div class="card__content">
+                        <div class="card__content style-day">
                             <i class="card__btn-close fa fa-times"></i>
                             <div class="card__caption">
                                 <h2 class="card__title">Национален дворец на културата</h2>
@@ -220,7 +226,7 @@
                             </defs>
                             <image clip-path="url(#clipPath2)" width="1920" height="500" xlink:href="img/b.jpg"></image>
                         </svg>
-                        <div class="card__content">
+                        <div class="card__content style-day">
                             <i class="card__btn-close fa fa-times"></i>
                             <div class="card__caption">
                                 <h2 class="card__title">About Helen</h2>

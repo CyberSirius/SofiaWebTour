@@ -12,6 +12,16 @@
     /* background-color: #000;*/
 }
 
+.style-day {
+    background-color: #ebebeb;
+    color: black;
+}
+
+.style-night {
+    background-color: rgb(14, 45, 74);
+    color: white;
+}
+
 .light-primary-color {
     background: #B2DFDB;
 }
