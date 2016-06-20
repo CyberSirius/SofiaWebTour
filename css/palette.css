@@ -21,7 +21,9 @@
     background-color: rgb(14, 45, 74);
     color: white;
 }
-
+.style-night a{
+    color: grey;
+}
 .light-primary-color {
     background: #B2DFDB;
 }
