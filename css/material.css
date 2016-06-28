@@ -11500,7 +11500,7 @@ fieldset[disabled] .mdl-textfield .mdl-textfield__label,
 }
 
 .mdl-textfield__error {
-  color: rgb(255, 255, 255);
+  color: red;
   position: absolute;
   font-size: 12px;
   margin-top: 3px;

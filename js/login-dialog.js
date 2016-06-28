@@ -1,30 +1,45 @@
-var dialog = document.querySelector('dialog');
-dialogPolyfill.registerDialog(dialog);
+var dialogLogin = document.querySelector('.login-form');
+var dialogReg = document.querySelector('.register-form');
+var dialogUplaod = document.querySelector('.upload-form');
+
+dialogPolyfill.registerDialog(dialogLogin);
+dialogPolyfill.registerDialog(dialogReg);
+dialogPolyfill.registerDialog(dialogUplaod);
+
 var showModalButton = document.querySelector('.show-login-modal');
-if (!dialog.showModal) {
-    dialogPolyfill.registerDialog(dialog);
+var showRegModalButton = document.querySelector('.show-register-modal');
+var showUploadModalButton = document.querySelectorAll('.show-upload-modal');
+
+if (!dialogLogin.showModal) {
+    dialogPolyfill.registerDialog(dialogLogin);
 }
 showModalButton.addEventListener('click', function () {
-    dialog.showModal();
-});
-dialog.querySelector('.close').addEventListener('click', function () {
-    dialog.close();
+	dialogLogin.showModal();
 });
 
-var regReenter = document.querySelector('.reg-reenter');
-var regEmail = document.querySelector('.reg-email');
-var regBtn = document.querySelector('.show-register-fields');
-var loginBtn = document.querySelector('.show-login-fields');
-
-regReenter.style.display = 'none';
-regEmail.style.display = 'none';
-
-regBtn.addEventListener('click', function () {
-    regReenter.style.display = 'block';
-    regEmail.style.display = 'block';
+dialogLogin.querySelector('.close').addEventListener('click', function () {
+	dialogLogin.close();
 });
 
-loginBtn.addEventListener('click', function () {
-    regReenter.style.display = 'none';
-    regEmail.style.display = 'none';
+
+
+if (!dialogReg.showModal) {
+    dialogPolyfill.registerDialog(dialogReg);
+}
+showRegModalButton.addEventListener('click', function () {
+	dialogReg.showModal();
+});
+
+dialogReg.querySelector('.close').addEventListener('click', function () {
+	dialogReg.close();
+});
+
+
+for(i=0; i<showUploadModalButton.length; i++) {
+	showUploadModalButton[i].addEventListener('click', function () {
+		dialogUplaod.showModal();
+	});
+}
+dialogUplaod.querySelector('.close').addEventListener('click', function () {
+	dialogUplaod.close();
 });

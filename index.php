@@ -1,4 +1,26 @@
-<?php error_log(1);?>
+<?php
+ob_start();
+include 'php/register.php';
+if(isset($_COOKIE['username'])) {
+	//if($_COOKIE['username'] != '@'){
+	$userData['username'] = $_COOKIE['username']; echo $_COOKIE['username'];
+	$users->isLogged = true; error_log('djopefo');
+	//}
+}
+
+// session_start();
+// if(isset($_SESSION["newsession"])) {
+// 	$userData = $_SESSION["newsession"];
+// 	error_log(555);
+// } else {error_log(var_export($userData, true));
+// $_SESSION["newsession"] = $userData;
+// echo 'session var not set';
+
+// }
+
+
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -86,6 +108,15 @@
             }
 
         }
+        function checkPasswordMatch() {
+        	        var password = $("#pass").val();
+        	        var confirmPassword = $("#confirm").val();
+        	        if (password !== confirmPassword) {
+        	        	$('#divconfirm').append('<span class="mdl-textfield__error">Passwords do not match!</span>');
+
+        	        } 
+        	    }
+	    
     </script>
 
 </head>
@@ -122,6 +153,9 @@
                 </form>
             </div>
             <nav class="mdl-navigation">
+             <?php error_log(var_export($users->getUserData(), true)); if($users->isLogged()) { ?>
+				<span class="mdl-layout__tab text-primary-color">Welcome, <?php echo $userData['username'];?></span>
+              <?php    }?>
                 <img src="images/icons/day.png" alt="" class="mode_icon" onclick="$('#switch-2').prop('checked',true)">
                 <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect switch" for="switch-2">
                     <input type="checkbox" id="switch-2" class="mdl-switch__input" onclick="clickToggle()">
@@ -139,46 +173,121 @@
                     <li class="mdl-menu__item">BG</li>
                     <li class="mdl-menu__item">EN</li>
                 </ul>
+                <?php $v = $users->isLogged(); error_log(var_export($v, true));if($users->isLogged()) { ?>
+				<button type="submit" id="button_exit" name="logout" onclick="document.write('<?php $users->logout()?>')"
+                        class="mdl-button exit mdl-navigation__link mdl-button mdl-js-button mdl-js-ripple-effect text-primary-color mdl-button--icon">
+                    <i class="material-icons">exit_to_app</i>
+                </button>
+              <?php    }?>
                 <button type="button" id="button_account"
                         class="mdl-button show-login-modal mdl-navigation__link mdl-button mdl-js-button mdl-js-ripple-effect text-primary-color mdl-button--icon">
-                    <i class="material-icons">account_circle</i>
+                    <i class="material-icons">person</i>
                 </button>
-                <div class="mdl-tooltip" for="button_account">Log in or register</div>
+                <div class="mdl-tooltip" for="button_account">Log in</div>
+                <dialog class="mdl-dialog login-form">
+                    <main class="mdl-layout__content">
+                        <div class="mdl-dialog__content mdl-card mdl-shadow--6dp">
+                            <div class="mdl-card__title background mdl-color-text--white">
+                                <h2 class="mdl-card__title-text">Sofia Web Tour</h2>
+                            </div>
+                            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="text" name="username"/>
+                                    <label class="mdl-textfield__label" for="username">Username</label>
+                                </div>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="password" name="userpass"/>
+                                    <label class="mdl-textfield__label" for="userpass">Password</label>
+                                </div>
+	                            <div class="mdl-dialog__actions mdl-card__actions">
+	                                <button type="button" class="mdl-button close mdl-js-button mdl-js-ripple-effect">Close</button>
+	                              
+	                                <input type="submit" name="login" class="show-login-fields mdl-button mdl-js-button mdl-js-ripple-effect"
+	                                value="Log in" />
+	                            </div>
+                            </form>
+                        </div>
+                    </main>
+                </dialog>
+                <button type="button" id="button_reg"
+                        class="mdl-button show-register-modal mdl-navigation__link mdl-button mdl-js-button mdl-js-ripple-effect text-primary-color mdl-button--icon">
+                    <i class="material-icons">person_add</i>
+                </button>
+                <div class="mdl-tooltip" for="button_reg">Register</div>
                 <dialog class="mdl-dialog register-form">
                     <main class="mdl-layout__content">
                         <div class="mdl-dialog__content mdl-card mdl-shadow--6dp">
                             <div class="mdl-card__title background mdl-color-text--white">
                                 <h2 class="mdl-card__title-text">Sofia Web Tour</h2>
                             </div>
-                            <form action="#" method="dialog">
-                                <div class="mdl-textfield mdl-js-textfield">
-                                    <input class="mdl-textfield__input" type="text" id="username"/>
+                            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="text" name="username" pattern="[A-Z,a-z]*" />
                                     <label class="mdl-textfield__label" for="username">Username</label>
+                                    <span class="mdl-textfield__error">Only alphabet and no spaces, please!</span>
                                 </div>
-                                <div class="mdl-textfield mdl-js-textfield">
-                                    <input class="mdl-textfield__input" type="password" id="userpass"/>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="password" name="userpass" id="pass"/>
                                     <label class="mdl-textfield__label" for="userpass">Password</label>
                                 </div>
-                                <div class="reg-reenter mdl-textfield mdl-js-textfield">
-                                    <input class="mdl-textfield__input" type="password" id="userpass"/>
+                                <div id="divconfirm" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input onkeyup="checkPasswordMatch(); return false;" class="mdl-textfield__input" type="password" name="confirmpass" id="confirm"/>
                                     <label class="mdl-textfield__label" for="userpass">Re-enter Password</label>
+<!--                                     <span class="mdl-textfield__error">Passwords do not match!</span> -->
                                 </div>
-                                <div class="reg-email mdl-textfield mdl-js-textfield">
-                                    <input class="mdl-textfield__input" type="text" id="userpass"/>
-                                    <label class="mdl-textfield__label" for="userpass">E-mail</label>
-                                </div>
+	                            <div class="mdl-dialog__actions mdl-card__actions">
+	                                <input type="button" onclick="return false;" class="mdl-button close mdl-js-button mdl-js-ripple-effect" value="Close" />
+	                                <input type="submit" name="register" class="show-register-fields mdl-button mdl-js-button mdl-js-ripple-effect"
+	                                    value="Register" />
+	                            </div>
                             </form>
-                            <div class="mdl-dialog__actions mdl-card__actions">
-                                <button class="mdl-button close mdl-js-button mdl-js-ripple-effect">Close</button>
-                                <button class="show-register-fields mdl-button mdl-js-button mdl-js-ripple-effect">
-                                    Register
-                                </button>
-                                <button class="show-login-fields mdl-button mdl-js-button mdl-js-ripple-effect">Log in
-                                </button>
-                            </div>
                         </div>
                     </main>
                 </dialog>
+                
+                <div class="mdl-tooltip" for="upload_img">Upload Image</div>
+                <dialog class="mdl-dialog upload-form">
+                    <main class="mdl-layout__content">
+                        <div class="mdl-dialog__content mdl-card mdl-shadow--6dp">
+                            <div class="mdl-card__title background mdl-color-text--white">
+                                <h2 class="mdl-card__title-text">Sofia Web Tour</h2>
+                            </div>
+                            <form name="upld" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" enctype="multipart/form-data" id="upld">
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input input-file" type="file" name="image" id="img" />
+<!--                                     <label class="mdl-textfield__label" for="username">IMG</label> -->
+                                </div>
+                                <div>
+                                	<select>
+                                		<option>Моля избери ... </option>
+                                		<?php foreach ($categories as $k=>$category) {
+                                			echo '<option value="'.$k.'">'.$category.'</option>';
+                                		}?>
+                                		
+                                	</select>
+                                </div>
+<!--                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"> -->
+<!--                                     <input class="mdl-textfield__input" type="password" name="userpass" id="pass"/> -->
+<!--                                     <label class="mdl-textfield__label" for="userpass">Password</label> -->
+<!--                                 </div> -->
+	                            <div class="mdl-dialog__actions mdl-card__actions">
+	                                <button type="button" class="mdl-button close mdl-js-button mdl-js-ripple-effect">Close</button>
+	                                <input type="submit" name="upload" class="show-register-fields mdl-button mdl-js-button mdl-js-ripple-effect"
+	                                    value="Upload" />
+	                            </div>
+                            </form>
+                        </div>
+                    </main>
+                </dialog>
+                
+                <script>
+                //console.log(document.upld.imageInput.value);
+                var fileInput = document.querySelector('.input-file');
+                fileInput.addEventListener("click", function(){
+					console.log(fileInput.value);
+					var file = fileInput.value;
+					});
+                </script>
                 <!--
                 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-jd-ripple-effect" for="button_account">
                         <li class="mdl-menu__item">Log in</li>
@@ -191,8 +300,8 @@
     <div class="mdl-layout__drawer">
         <span class="mdl-layout-title">Menu</span>
         <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="index.html">Home</a>
-            <a class="mdl-navigation__link" href="about.html">About</a>
+            <a class="mdl-navigation__link" href="index.php">Home</a>
+            <a class="mdl-navigation__link" href="about.php">About</a>
             <a class="mdl-navigation__link" href="">Link</a>
             <a class="mdl-navigation__link" href="">Link</a>
         </nav>
@@ -217,7 +326,7 @@
                         <div class="card__content style-day">
                             <i class="card__btn-close fa fa-times"></i>
                             <div class="card__caption">
-                                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-js-ripple-effect add-fab">
+                                <button class="upload-img show-upload-modal mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-js-ripple-effect add-fab">
                                     <i class="material-icons">add</i>
                                 </button>
                                 <h2 class="card__title">Национален дворец на културата</h2>
@@ -226,9 +335,9 @@
                             </div>
                             <div class="card__copy">
                                 <div class="meta">
-                                    <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0"
-                                            marginwidth="0"
-                                            src="http://maps.google.ca/maps?f=q&amp;q=НДК&amp;output=embed"></iframe>
+<!--                                     <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" -->
+<!--                                             marginwidth="0" -->
+<!--                                             src="http://maps.google.ca/maps?f=q&amp;q=НДК&amp;output=embed"></iframe> -->
                                     <br/>
                                 </div>
                                 <p>Националният дворец на културата, известен и с краткото НДК (наименование до 1990 г.
@@ -282,6 +391,19 @@
                                     Евтимий“ до подножието на „Лозенец“. Това си спомня пред БТА Георги Йорданов,
                                     първият ръководител на щаба за координация на изпълнението на проектирането и
                                     строителството – от началото на 1978 г. до есента на 1979 г.</p>
+                                <div>
+                                	<?php $images = $users->displayImages();
+                                	if($users->isLogged()) {
+                                		if(!empty($images)) {
+                                			foreach ($images as $img) {
+                                				echo '<img height="300" width="300" src="data:image;base64,'.$img['image'].'">';
+                                			}
+                                		}
+                                	}
+                                			
+                                	?>
+                                </div>
+                               
                             </div>
                         </div>
                     </div>
@@ -302,7 +424,7 @@
                         <div class="card__content style-day">
                             <i class="card__btn-close fa fa-times"></i>
                             <div class="card__caption">
-                                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-js-ripple-effect add-fab">
+                                <button class="upload-img show-upload-modal mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-js-ripple-effect add-fab">
                                     <i class="material-icons">add</i>
                                 </button>
                                 <h2 class="card__title">Национална библиотека "Св. Св. Кирил и Методий"</h2>
@@ -310,9 +432,9 @@
                             </div>
                             <div class="card__copy">
                                 <div class="meta">
-                                    <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0"
-                                            marginwidth="0"
-                                            src="http://maps.google.ca/maps?f=q&amp;q=Народна библиотека&amp;output=embed"></iframe>
+<!--                                     <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" -->
+<!--                                             marginwidth="0" -->
+<!--                                             src="http://maps.google.ca/maps?f=q&amp;q=Народна библиотека&amp;output=embed"></iframe> -->
                                     <br/>
                                 </div>
                                 <p>Националната библиотека „Св. св. Кирил и Методий“ (преди Народна библиотека „Св. св.
@@ -357,7 +479,7 @@
                         <div class="card__content style-day">
                             <i class="card__btn-close fa fa-times"></i>
                             <div class="card__caption">
-                                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-js-ripple-effect add-fab">
+                                <button class="upload-img show-upload-modal mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-js-ripple-effect add-fab">
                                     <i class="material-icons">add</i>
                                 </button>
                                 <h2 class="card__title">Народен театър "Иван Вазов"</h2>
@@ -365,9 +487,9 @@
                             </div>
                             <div class="card__copy">
                                 <div class="meta">
-                                    <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0"
-                                            marginwidth="0"
-                                            src="http://maps.google.ca/maps?f=q&amp;q=Народен театър&amp;output=embed"></iframe>
+<!--                                     <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" -->
+<!--                                             marginwidth="0" -->
+<!--                                             src="http://maps.google.ca/maps?f=q&amp;q=Народен театър&amp;output=embed"></iframe> -->
                                     <br/>
                                 </div>
                                 <p>Народен театър „Иван Вазов“ е Национален културен институт в областта на театралното
@@ -416,7 +538,7 @@
                         <div class="card__content style-day">
                             <i class="card__btn-close fa fa-times"></i>
                             <div class="card__caption">
-                                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-js-ripple-effect add-fab">
+                                <button class="upload-img show-upload-modal mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-js-ripple-effect add-fab">
                                     <i class="material-icons">add</i>
                                 </button>
                                 <h2 class="card__title">Народно събрание на Република България</h2>
@@ -424,9 +546,9 @@
                             </div>
                             <div class="card__copy">
                                 <div class="meta">
-                                    <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0"
-                                            marginwidth="0"
-                                            src="http://maps.google.ca/maps?f=q&amp;q=Народно събрание&amp;output=embed"></iframe>
+<!--                                     <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" -->
+<!--                                             marginwidth="0" -->
+<!--                                             src="http://maps.google.ca/maps?f=q&amp;q=Народно събрание&amp;output=embed"></iframe> -->
                                     <br/>
                                 </div>
                                 <p>Сградата на Народното събрание е сред първите обществени сгради, построени след
@@ -483,7 +605,7 @@
                         <div class="card__content style-day">
                             <i class="card__btn-close fa fa-times"></i>
                             <div class="card__caption">
-                                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-js-ripple-effect add-fab">
+                                <button class="upload-img show-upload-modal mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-js-ripple-effect add-fab">
                                     <i class="material-icons">add</i>
                                 </button>
                                 <h2 class="card__title">Храм-паметник "Св. Александър Невски"</h2>
@@ -491,9 +613,9 @@
                             </div>
                             <div class="card__copy">
                                 <div class="meta">
-                                    <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0"
-                                            marginwidth="0"
-                                            src="http://maps.google.ca/maps?f=q&amp;q=храм Александър Невски&amp;output=embed"></iframe>
+<!--                                     <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" -->
+<!--                                             marginwidth="0" -->
+<!--                                             src="http://maps.google.ca/maps?f=q&amp;q=храм Александър Невски&amp;output=embed"></iframe> -->
                                     <br/>
                                 </div>
                                 <p>„Свети Александър Невски“ е православен храм-паметник в София, който e катедрален
@@ -550,7 +672,7 @@
                         <div class="card__content style-day">
                             <i class="card__btn-close fa fa-times"></i>
                             <div class="card__caption">
-                                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-js-ripple-effect add-fab">
+                                <button class="upload-img show-upload-modal mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-js-ripple-effect add-fab">
                                     <i class="material-icons">add</i>
                                 </button>
                                 <h2 class="card__title">Паметник на Цар Освободител</h2>
@@ -558,9 +680,9 @@
                             </div>
                             <div class="card__copy">
                                 <div class="meta">
-                                    <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0"
-                                            marginwidth="0"
-                                            src="http://maps.google.ca/maps?f=q&amp;q=паметник Цар Освободител&amp;output=embed"></iframe>
+<!--                                     <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" -->
+<!--                                             marginwidth="0" -->
+<!--                                             src="http://maps.google.ca/maps?f=q&amp;q=паметник Цар Освободител&amp;output=embed"></iframe> -->
                                     <br/>
                                 </div>
                                 <p>Паметникът на Царя Освободител, наричан още Паметник на Освободителите, е един от
@@ -608,7 +730,7 @@
                         <div class="card__content style-day">
                             <i class="card__btn-close fa fa-times"></i>
                             <div class="card__caption">
-                                <button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-js-ripple-effect add-fab">
+                                <button class="upload-img show-upload-modal mdl-button mdl-js-button mdl-button--fab mdl-button--colored mdl-js-ripple-effect add-fab">
                                     <i class="material-icons">add</i>
                                 </button>
                                 <h2 class="card__title">Софийски университет „Св. Климент Охридски“</h2>
@@ -616,9 +738,9 @@
                             </div>
                             <div class="card__copy">
                                 <div class="meta">
-                                    <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0"
-                                            marginwidth="0"
-                                            src="http://maps.google.ca/maps?f=q&amp;q=Софийски Университет&amp;output=embed"></iframe>
+<!--                                     <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" -->
+<!--                                             marginwidth="0" -->
+<!--                                             src="http://maps.google.ca/maps?f=q&amp;q=Софийски Университет&amp;output=embed"></iframe> -->
                                     <br/>
                                 </div>
                                 <p>Софийският университет „Св. Климент Охридски“ (от 1944 до 1989 г. се нарича Софийски
@@ -668,7 +790,7 @@
                         <div class="card__content style-day">
                             <i class="card__btn-close fa fa-times"></i>
                             <div class="card__caption">
-                                <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect add-fab">
+                                <button class="upload-img show-upload-modal mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect add-fab">
                                     <i class="material-icons">add</i>
                                 </button>
                                 <h2 class="card__title">Паметник на Цар Самуил</h2>
@@ -676,9 +798,9 @@
                             </div>
                             <div class="card__copy">
                                 <div class="meta">
-                                    <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0"
-                                            marginwidth="0"
-                                            src="http://maps.google.ca/maps?f=q&amp;q=Незнайния войн&amp;output=embed"></iframe>
+<!--                                     <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" -->
+<!--                                             marginwidth="0" -->
+<!--                                             src="http://maps.google.ca/maps?f=q&amp;q=Незнайния войн&amp;output=embed"></iframe> -->
                                     <br/>
 
                                 </div>
@@ -699,13 +821,37 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-            <!-- /cards -->
-        </div><!-- /content -->
-
+        </div>
     </div>
 </div>
 <script src="js/login-dialog.js"></script>
+<script>
+<?php if($users->isLogged()) {?>
+document.querySelector("#button_account").style.display = 'none';
+document.querySelector("#button_reg").style.display = 'none';
+
+<?php } else {?>
+document.querySelector("#button_account").style.display = 'block';
+document.querySelector("#button_reg").style.display = 'block';
+document.querySelector(".upload-img").style.display = 'none';
+<?php }?>
+
+<?php // if($users->isLogged()) { error_log(1);?>
+//if(document.querySelector("#button_exit")!==null) {
+// 	var fn = function (){ 
+		<?php //$users->logout();?>
+// 		window.location = "http://localhost/index.php";
+// 		}
+// 	(function (){
+// 		document.getElementById("button_exit").addEventListener("click", fn);
+// 		this.stopPropagation();
+// 		console.log(1);
+// 	}());
+	
+	//}, false);
+//}
+<?php  //}?>
+</script>
 </body>
 </html>

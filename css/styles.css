@@ -146,7 +146,7 @@ body {
     overload: hidden;
 }
 
-dialog.register-form {
+dialog.register-form, dialog.login-form, dialog.upload-form {
     background: transparent;
     width: 20%;
     height: 44%;
