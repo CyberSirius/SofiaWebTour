@@ -1,17 +1,17 @@
-<?php
+Ôªø<?php
 include 'Db.php';
 include 'users.php';
 $db = new Db();
-$users = new Users();
+$user = new Users();
 $categories = array(
-	0=>'Õ‡ˆËÓÌ‡ÎÂÌ ‰‚ÓÂˆ Ì‡ ÍÛÎÚÛ‡Ú‡',
-	1=>'Õ‡ˆËÓÌ‡ÎÌ‡ ·Ë·ÎËÓÚÂÍ‡',
-	2=>'Õ‡Ó‰ÂÌ ÚÂ‡Ú˙',
-	3=>'Õ‡Ó‰ÌÓ Ò˙·‡ÌËÂ',
-	4=>'Ò‚. ¿ÎÂÍÒ‡Ì‰˙ ÕÂ‚ÒÍË',
-	5=>'œ‡ÏÂÚÌËÍ Ì‡ ÷‡ ŒÒ‚Ó·Ó‰ËÚÂÎ',
-	6=>'—ÓÙËÈÒÍË ÛÌË‚ÂÒËÚÂÚ',
-	7=>'œ‡ÏÂÚÌËÍ Ì‡ ÷‡ —‡ÏÛËÎ'	
+	0=>'–ù–∞—Ü–∏–æ–Ω–∞–ª–µ–Ω –¥–≤–æ—Ä–µ—Ü –Ω–∞ –∫—É–ª—Ç—É—Ä–∞—Ç–∞',
+	1=>'–ù–∞—Ü–∏–æ–Ω–∞–ª–Ω–∞ –±–∏–±–ª–∏–æ—Ç–µ–∫–∞',
+	2=>'–ù–∞—Ä–æ–¥–µ–Ω —Ç–µ–∞—Ç—ä—Ä',
+	3=>'–ù–∞—Ä–æ–¥–Ω–æ —Å—ä–±—Ä–∞–Ω–∏–µ',
+	4=>'—Å–≤. –ê–ª–µ–∫—Å–∞–Ω–¥—ä—Ä –ù–µ–≤—Å–∫–∏',
+	5=>'–ü–∞–º–µ—Ç–Ω–∏–∫ –Ω–∞ –¶–∞—Ä –û—Å–≤–æ–±–æ–¥–∏—Ç–µ–ª',
+	6=>'–°–æ—Ñ–∏–π—Å–∫–∏ —É–Ω–∏–≤–µ—Ä—Å–∏—Ç–µ—Ç',
+	7=>'–ü–∞–º–µ—Ç–Ω–∏–∫ –Ω–∞ –¶–∞—Ä –°–∞–º—É–∏–ª'	
 );
 
 
@@ -22,7 +22,7 @@ if(!empty($_POST['register'])) {
 	$confirm = $_POST['confirmpass'];
 	if($password !== $confirm) {
 		echo '<script type="text/javascript">
-           window.location = "http://localhost/index.php"
+           window.location = "index.php"
       			</script>';
 	} else {
 		$password = password_hash($password, PASSWORD_DEFAULT);
@@ -33,17 +33,18 @@ if(!empty($_POST['register'])) {
 if(!empty($_POST['login'])) {
 	$username = $_POST['username'];
 	$password = $_POST['userpass'];
-	$users->login($username, $password);	
+	$user->login($username, $password);	
 }
-if(isset($_POST['upload'])) {
+if(isset($_POST['upload'])) { error_log(1);
 	if(getimagesize($_FILES['image']['tmp_name']) == false){
 		echo 'Please select an image!';
 	} else {
 		$image = addslashes($_FILES['image']['tmp_name']);
-		$name = addslashes($_FILES['image']['name']); error_log(var_export($name, true));
+		$name = addslashes($_FILES['image']['name']);
 		$image = file_get_contents($image);
-		$image = base64_encode($image);error_log(var_export($image, true));
-		$users->saveImage($name, $image);
+		$image = base64_encode($image);
+		$category = $_POST['category'];
+		$user->saveImage($name, $image, $category);
 	}
 }
 

@@ -8,8 +8,13 @@ class Users extends Db{
 		
 		$status = false;
 		$query = "SELECT * FROM `users` WHERE `username`='".$username."'";
-		$result = $this->select($query);
-		$userData = $result[0];
+		$result = $this->select($query); 
+		if(!empty($result)) {
+			$userData = $result[0]; error_log(var_export($userData, true));
+		} else {
+			//break;
+		} 
+		
 		if(!empty($userData)) {
 			$status = true;
 			if(!password_verify($password, $userData['password'])) {
@@ -23,8 +28,9 @@ class Users extends Db{
  				$this->userData = $userData;
  				//$_SESSION["newsession"]=$userData;
 			}
-		}
-		setcookie('username', $userData['username']);
+		} 
+		
+		setcookie('username', $userData['username']); 
 		$this->isLogged = (bool) $status;
 		return $this->isLogged;
 	}
@@ -35,29 +41,22 @@ class Users extends Db{
 	public function getUserData() {
 		return $this->userData;
 	}
-	public function logout(){ error_log('logout');
+	public function logout(){
 		unset($_COOKIE['username']);
 		setcookie('username', '', time() - 700000, '/');
 		$this->isLogged = false;
 		$this->userData = array();
-		//$_SESSION["newsession"]=array();
-		//session_destroy();
-		
-		
-		
 	}
-	public function saveImage ($name, $image) {
-		$query = "INSERT INTO `images` (`name`, `image`, `username`) values ('$name', '$image', 't.vasileva');";
-		$result = $this->query($query); error_log(var_export($query, true));
-		if($result) {
-			echo 'Image uploaded';
-		} else {
-			echo 'Image not uploaded';
-		}
+	public function saveImage ($name, $image, $category) {	
+		$query = "INSERT INTO `images` (`name`, `image`, `category`) values ('$name', '$image','$category');";
+		$result = $this->query($query);
 	}
-	public function displayImages() {
-		$query = "SELECT * FROM `images`;";
+	public function displayImagesByCategory($category) {
+		$query = "SELECT * FROM `images` where `category` = $category;";
 		$result = $this->select($query);
 		return $result;
+	}
+	public function getUserName() {
+		return $this->userData['username'];
 	}
 }

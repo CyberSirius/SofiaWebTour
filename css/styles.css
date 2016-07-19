@@ -2,6 +2,14 @@ body {
     overflow: hidden;
 }
 
+header .mdl-layout__header-row .mdl-navigation {
+	margin-right: 19px;
+}
+
+header .mdl-layout__header-row.background {
+	margin-left: -20px;
+}
+
 .mdl-layout--fixed-header {
     z-index: 6;
     position: fixed;
@@ -177,4 +185,10 @@ dialog.register-form, dialog.login-form, dialog.upload-form {
 .add-fab{
     top: -94px;
     left: 962px;
+}
+.uploaded-images {
+	margin: 20px auto;
+	display: block;
+	width: auto;
+	height: 400px;
 }

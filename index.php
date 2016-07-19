@@ -2,30 +2,17 @@
 ob_start();
 include 'php/register.php';
 if(isset($_COOKIE['username'])) {
-	//if($_COOKIE['username'] != '@'){
-	$userData['username'] = $_COOKIE['username']; echo $_COOKIE['username'];
-	$users->isLogged = true; error_log('djopefo');
-	//}
+	$user->userData['username'] = $_COOKIE['username'];
+	$user->isLogged = true; 
 }
-
-// session_start();
-// if(isset($_SESSION["newsession"])) {
-// 	$userData = $_SESSION["newsession"];
-// 	error_log(555);
-// } else {error_log(var_export($userData, true));
-// $_SESSION["newsession"] = $userData;
-// echo 'session var not set';
-
-// }
-
-
-
+if(isset($_POST['logout'])) {
+	$user->logout();
+	echo '<script>window.location="index.php"</script>';
+}
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-
     <title>Sofia Web Tour</title>
     <link rel="stylesheet" href="css/material.css">
     <link rel="stylesheet" href="css/palette.css">
@@ -108,21 +95,11 @@ if(isset($_COOKIE['username'])) {
             }
 
         }
-        function checkPasswordMatch() {
-        	        var password = $("#pass").val();
-        	        var confirmPassword = $("#confirm").val();
-        	        if (password !== confirmPassword) {
-        	        	$('#divconfirm').append('<span class="mdl-textfield__error">Passwords do not match!</span>');
-
-        	        } 
-        	    }
-	    
     </script>
 
 </head>
 <body class="style-day">
 <div class="mdl-layout mdl-js-layout" id="layout">
-
     <header class="mdl-layout--fixed-header background">
         <div class="mdl-layout__header-row background">
             <div role="button" id="nav-icon1" class="mdl-layout__drawer-button secondary-text-color"
@@ -146,44 +123,46 @@ if(isset($_COOKIE['username'])) {
                             <i class="material-icons">search</i>
                         </label>
                         <div class="mdl-tooltip" for="search-label">
-                            Search
+                            Търсене
                         </div>
 
                     </div>
                 </form>
             </div>
             <nav class="mdl-navigation">
-             <?php error_log(var_export($users->getUserData(), true)); if($users->isLogged()) { ?>
-				<span class="mdl-layout__tab text-primary-color">Welcome, <?php echo $userData['username'];?></span>
+             <?php if($user->isLogged()) { ?>
+				<span class="mdl-layout__tab text-primary-color">Добре дошли, <?php echo $user->getUserName();?></span>
               <?php    }?>
                 <img src="images/icons/day.png" alt="" class="mode_icon" onclick="$('#switch-2').prop('checked',true)">
                 <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect switch" for="switch-2">
                     <input type="checkbox" id="switch-2" class="mdl-switch__input" onclick="clickToggle()">
                     <span class="mdl-switch__label"></span>
                 </label>
-                <div class="mdl-tooltip" for="switch-2">Change language</div>
+                <div class="mdl-tooltip" for="switch-2">Смени език</div>
                 <img src="images/icons/night.png" alt="" class="mode_icon"
                      onclick="$('#switch-2').prop('checked',false)">
                 <button id="button_language"
                         class="mdl-navigation__link mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
                     <i class="material-icons">language</i>
                 </button>
-                <div class="mdl-tooltip" for="button_language">Change language</div>
+                <div class="mdl-tooltip" for="button_language">Смени език</div>
                 <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-jd-ripple-effect" for="button_language">
                     <li class="mdl-menu__item">BG</li>
                     <li class="mdl-menu__item">EN</li>
                 </ul>
-                <?php $v = $users->isLogged(); error_log(var_export($v, true));if($users->isLogged()) { ?>
-				<button type="submit" id="button_exit" name="logout" onclick="document.write('<?php $users->logout()?>')"
-                        class="mdl-button exit mdl-navigation__link mdl-button mdl-js-button mdl-js-ripple-effect text-primary-color mdl-button--icon">
-                    <i class="material-icons">exit_to_app</i>
-                </button>
+                <?php if($user->isLogged()) { ?>
+                <form action="<?php $_SERVER["PHP_SELF"];?>" method="post">
+					<button type="submit" id="button_exit" name="logout"
+	                       value="Click to release" class="mdl-button exit mdl-navigation__link mdl-button mdl-js-button mdl-js-ripple-effect text-primary-color mdl-button--icon">
+	                    <i class="material-icons">exit_to_app</i>
+	                </button>
+                </form>
               <?php    }?>
                 <button type="button" id="button_account"
                         class="mdl-button show-login-modal mdl-navigation__link mdl-button mdl-js-button mdl-js-ripple-effect text-primary-color mdl-button--icon">
                     <i class="material-icons">person</i>
                 </button>
-                <div class="mdl-tooltip" for="button_account">Log in</div>
+                <div class="mdl-tooltip" for="button_account">Вход</div>
                 <dialog class="mdl-dialog login-form">
                     <main class="mdl-layout__content">
                         <div class="mdl-dialog__content mdl-card mdl-shadow--6dp">
@@ -193,17 +172,17 @@ if(isset($_COOKIE['username'])) {
                             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="POST">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                     <input class="mdl-textfield__input" type="text" name="username"/>
-                                    <label class="mdl-textfield__label" for="username">Username</label>
+                                    <label class="mdl-textfield__label" for="username">Потребителско име</label>
                                 </div>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                     <input class="mdl-textfield__input" type="password" name="userpass"/>
-                                    <label class="mdl-textfield__label" for="userpass">Password</label>
+                                    <label class="mdl-textfield__label" for="userpass">Парола</label>
                                 </div>
 	                            <div class="mdl-dialog__actions mdl-card__actions">
-	                                <button type="button" class="mdl-button close mdl-js-button mdl-js-ripple-effect">Close</button>
+	                                <button type="button" class="mdl-button close mdl-js-button mdl-js-ripple-effect">Затвори</button>
 	                              
 	                                <input type="submit" name="login" class="show-login-fields mdl-button mdl-js-button mdl-js-ripple-effect"
-	                                value="Log in" />
+	                                value="Вход" />
 	                            </div>
                             </form>
                         </div>
@@ -213,7 +192,7 @@ if(isset($_COOKIE['username'])) {
                         class="mdl-button show-register-modal mdl-navigation__link mdl-button mdl-js-button mdl-js-ripple-effect text-primary-color mdl-button--icon">
                     <i class="material-icons">person_add</i>
                 </button>
-                <div class="mdl-tooltip" for="button_reg">Register</div>
+                <div class="mdl-tooltip" for="button_reg">Регистрация</div>
                 <dialog class="mdl-dialog register-form">
                     <main class="mdl-layout__content">
                         <div class="mdl-dialog__content mdl-card mdl-shadow--6dp">
@@ -222,88 +201,65 @@ if(isset($_COOKIE['username'])) {
                             </div>
                             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input class="mdl-textfield__input" type="text" name="username" pattern="[A-Z,a-z]*" />
-                                    <label class="mdl-textfield__label" for="username">Username</label>
-                                    <span class="mdl-textfield__error">Only alphabet and no spaces, please!</span>
+                                    <input class="mdl-textfield__input" type="text" name="username" pattern="[A-Z,a-z,0-9,-,_,.]*" />
+                                    <label class="mdl-textfield__label" for="username">Потребителско име</label>
+                                    <span class="mdl-textfield__error">Само букви, цифри и символите . _ - </span>
                                 </div>
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                     <input class="mdl-textfield__input" type="password" name="userpass" id="pass"/>
-                                    <label class="mdl-textfield__label" for="userpass">Password</label>
+                                    <label class="mdl-textfield__label" for="userpass">Парола</label>
                                 </div>
                                 <div id="divconfirm" class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                                     <input onkeyup="checkPasswordMatch(); return false;" class="mdl-textfield__input" type="password" name="confirmpass" id="confirm"/>
-                                    <label class="mdl-textfield__label" for="userpass">Re-enter Password</label>
+                                    <label class="mdl-textfield__label" for="userpass">Парола повторно</label>
 <!--                                     <span class="mdl-textfield__error">Passwords do not match!</span> -->
                                 </div>
 	                            <div class="mdl-dialog__actions mdl-card__actions">
-	                                <input type="button" onclick="return false;" class="mdl-button close mdl-js-button mdl-js-ripple-effect" value="Close" />
+	                                <input type="button" onclick="return false;" class="mdl-button close mdl-js-button mdl-js-ripple-effect" value="Затвори" />
 	                                <input type="submit" name="register" class="show-register-fields mdl-button mdl-js-button mdl-js-ripple-effect"
-	                                    value="Register" />
+	                                    value="Регистрация" />
 	                            </div>
                             </form>
                         </div>
                     </main>
                 </dialog>
-                
-                <div class="mdl-tooltip" for="upload_img">Upload Image</div>
+                <div class="mdl-tooltip" for="upload_img">Качи снимка</div>
                 <dialog class="mdl-dialog upload-form">
                     <main class="mdl-layout__content">
                         <div class="mdl-dialog__content mdl-card mdl-shadow--6dp">
                             <div class="mdl-card__title background mdl-color-text--white">
                                 <h2 class="mdl-card__title-text">Sofia Web Tour</h2>
                             </div>
-                            <form name="upld" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" enctype="multipart/form-data" id="upld">
+                            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" enctype="multipart/form-data">
                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                                    <input class="mdl-textfield__input input-file" type="file" name="image" id="img" />
-<!--                                     <label class="mdl-textfield__label" for="username">IMG</label> -->
+                                    <input class="mdl-textfield__input input-file" type="file" name="image" id="img"/>
                                 </div>
                                 <div>
-                                	<select>
-                                		<option>Моля избери ... </option>
+                                	<select name="category">
+                                		<option selected disabled>Моля изберете обект ... </option>
                                 		<?php foreach ($categories as $k=>$category) {
                                 			echo '<option value="'.$k.'">'.$category.'</option>';
                                 		}?>
                                 		
                                 	</select>
                                 </div>
-<!--                                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"> -->
-<!--                                     <input class="mdl-textfield__input" type="password" name="userpass" id="pass"/> -->
-<!--                                     <label class="mdl-textfield__label" for="userpass">Password</label> -->
-<!--                                 </div> -->
 	                            <div class="mdl-dialog__actions mdl-card__actions">
-	                                <button type="button" class="mdl-button close mdl-js-button mdl-js-ripple-effect">Close</button>
+	                                <button type="button" class="mdl-button close mdl-js-button mdl-js-ripple-effect">Затворете</button>
 	                                <input type="submit" name="upload" class="show-register-fields mdl-button mdl-js-button mdl-js-ripple-effect"
-	                                    value="Upload" />
+	                                    value="Качи" />
 	                            </div>
                             </form>
                         </div>
                     </main>
                 </dialog>
-                
-                <script>
-                //console.log(document.upld.imageInput.value);
-                var fileInput = document.querySelector('.input-file');
-                fileInput.addEventListener("click", function(){
-					console.log(fileInput.value);
-					var file = fileInput.value;
-					});
-                </script>
-                <!--
-                <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-jd-ripple-effect" for="button_account">
-                        <li class="mdl-menu__item">Log in</li>
-                        <li class="mdl-menu__item">Register</li>
-                </ul>
-                -->
             </nav>
         </div>
     </header>
     <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">Menu</span>
+        <span class="mdl-layout-title">Меню</span>
         <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="index.php">Home</a>
-            <a class="mdl-navigation__link" href="about.php">About</a>
-            <a class="mdl-navigation__link" href="">Link</a>
-            <a class="mdl-navigation__link" href="">Link</a>
+            <a class="mdl-navigation__link" href="index.php">Начало</a>
+            <a class="mdl-navigation__link" href="about.php">За нас</a>
         </nav>
     </div>
     <div class="container" id="main_container">
@@ -335,9 +291,9 @@ if(isset($_COOKIE['username'])) {
                             </div>
                             <div class="card__copy">
                                 <div class="meta">
-<!--                                     <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" -->
-<!--                                             marginwidth="0" -->
-<!--                                             src="http://maps.google.ca/maps?f=q&amp;q=НДК&amp;output=embed"></iframe> -->
+                                    <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0"
+                                            marginwidth="0"
+                                            src="http://maps.google.ca/maps?f=q&amp;q=НДК&amp;output=embed"></iframe>
                                     <br/>
                                 </div>
                                 <p>Националният дворец на културата, известен и с краткото НДК (наименование до 1990 г.
@@ -392,18 +348,17 @@ if(isset($_COOKIE['username'])) {
                                     първият ръководител на щаба за координация на изпълнението на проектирането и
                                     строителството – от началото на 1978 г. до есента на 1979 г.</p>
                                 <div>
-                                	<?php $images = $users->displayImages();
-                                	if($users->isLogged()) {
-                                		if(!empty($images)) {
-                                			foreach ($images as $img) {
-                                				echo '<img height="300" width="300" src="data:image;base64,'.$img['image'].'">';
-                                			}
-                                		}
-                                	}
-                                			
-                                	?>
+                                	<?php
+									$images = $user->displayImagesByCategory(0);
+									if($user->isLogged()) {
+										if(!empty($images)) {
+											foreach ($images as $img) {
+												echo '<img class="uploaded-images" src="data:image;base64,'.$img['image'].'">';
+											}
+										}
+									}
+									?>
                                 </div>
-                               
                             </div>
                         </div>
                     </div>
@@ -432,9 +387,9 @@ if(isset($_COOKIE['username'])) {
                             </div>
                             <div class="card__copy">
                                 <div class="meta">
-<!--                                     <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" -->
-<!--                                             marginwidth="0" -->
-<!--                                             src="http://maps.google.ca/maps?f=q&amp;q=Народна библиотека&amp;output=embed"></iframe> -->
+                                    <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0"
+                                            marginwidth="0"
+                                            src="http://maps.google.ca/maps?f=q&amp;q=Народна библиотека&amp;output=embed"></iframe>
                                     <br/>
                                 </div>
                                 <p>Националната библиотека „Св. св. Кирил и Методий“ (преди Народна библиотека „Св. св.
@@ -458,8 +413,20 @@ if(isset($_COOKIE['username'])) {
                                     са разрушени. Новата сграда е проектирана от архитектите Иван Васильов и Димитър
                                     Цолов. Фасадата е дело на скулптора Михайло Парашчук. Построена е със сключен през
                                     1946 г. целеви държавен заем и е открита на 16 декември 1953 г.</p>
-
+								<div>
+                                	<?php
+									$images = $user->displayImagesByCategory(1);
+									if($user->isLogged()) {
+										if(!empty($images)) {
+											foreach ($images as $img) {
+												echo '<img class="uploaded-images" src="data:image;base64,'.$img['image'].'">';
+											}
+										}
+									}
+									?>
+                                </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>
@@ -487,9 +454,9 @@ if(isset($_COOKIE['username'])) {
                             </div>
                             <div class="card__copy">
                                 <div class="meta">
-<!--                                     <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" -->
-<!--                                             marginwidth="0" -->
-<!--                                             src="http://maps.google.ca/maps?f=q&amp;q=Народен театър&amp;output=embed"></iframe> -->
+                                    <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0"
+                                            marginwidth="0"
+                                            src="http://maps.google.ca/maps?f=q&amp;q=Народен театър&amp;output=embed"></iframe>
                                     <br/>
                                 </div>
                                 <p>Народен театър „Иван Вазов“ е Национален културен институт в областта на театралното
@@ -517,7 +484,18 @@ if(isset($_COOKIE['username'])) {
                                     изкуство“ избухва пожар, който унищожава театъра. От началото на новия сезон трупата
                                     играе разделена на две части в различни градове на България, а след това шест години
                                     – на сцената на специално ремонтирания „Свободен театър” в София.</p>
-
+								<div>
+                                	<?php
+									$images = $user->displayImagesByCategory(2);
+									if($user->isLogged()) {
+										if(!empty($images)) {
+											foreach ($images as $img) {
+												echo '<img class="uploaded-images" src="data:image;base64,'.$img['image'].'">';
+											}
+										}
+									}
+									?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -546,9 +524,9 @@ if(isset($_COOKIE['username'])) {
                             </div>
                             <div class="card__copy">
                                 <div class="meta">
-<!--                                     <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" -->
-<!--                                             marginwidth="0" -->
-<!--                                             src="http://maps.google.ca/maps?f=q&amp;q=Народно събрание&amp;output=embed"></iframe> -->
+                                    <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0"
+                                            marginwidth="0"
+                                            src="http://maps.google.ca/maps?f=q&amp;q=Народно събрание&amp;output=embed"></iframe>
                                     <br/>
                                 </div>
                                 <p>Сградата на Народното събрание е сред първите обществени сгради, построени след
@@ -584,7 +562,18 @@ if(isset($_COOKIE['username'])) {
                                     прави силата“, част и от националния герб на България. Сградата е исторически,
                                     архитектурен и художествен паметник на културата от национално значение. Тя е
                                     кандидат за символ на София.</p>
-
+								<div>
+                                	<?php
+									$images = $user->displayImagesByCategory(3);
+									if($user->isLogged()) {
+										if(!empty($images)) {
+											foreach ($images as $img) {
+												echo '<img class="uploaded-images" src="data:image;base64,'.$img['image'].'">';
+											}
+										}
+									}
+									?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -613,9 +602,9 @@ if(isset($_COOKIE['username'])) {
                             </div>
                             <div class="card__copy">
                                 <div class="meta">
-<!--                                     <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" -->
-<!--                                             marginwidth="0" -->
-<!--                                             src="http://maps.google.ca/maps?f=q&amp;q=храм Александър Невски&amp;output=embed"></iframe> -->
+                                    <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0"
+                                            marginwidth="0"
+                                            src="http://maps.google.ca/maps?f=q&amp;q=храм Александър Невски&amp;output=embed"></iframe>
                                     <br/>
                                 </div>
                                 <p>„Свети Александър Невски“ е православен храм-паметник в София, който e катедрален
@@ -651,7 +640,18 @@ if(isset($_COOKIE['username'])) {
                                 <p>С решение от 1 октомври 2014 г. на служебния кабинет на проф. Георги Близнашки
                                     собствеността на храма се предоставя на Светия синод на Българската православна
                                     църква.</p>
-
+								<div>
+                                	<?php
+									$images = $user->displayImagesByCategory(4);
+									if($user->isLogged()) {
+										if(!empty($images)) {
+											foreach ($images as $img) {
+												echo '<img class="uploaded-images" src="data:image;base64,'.$img['image'].'">';
+											}
+										}
+									}
+									?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -680,9 +680,9 @@ if(isset($_COOKIE['username'])) {
                             </div>
                             <div class="card__copy">
                                 <div class="meta">
-<!--                                     <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" -->
-<!--                                             marginwidth="0" -->
-<!--                                             src="http://maps.google.ca/maps?f=q&amp;q=паметник Цар Освободител&amp;output=embed"></iframe> -->
+                                    <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0"
+                                            marginwidth="0"
+                                            src="http://maps.google.ca/maps?f=q&amp;q=паметник Цар Освободител&amp;output=embed"></iframe>
                                     <br/>
                                 </div>
                                 <p>Паметникът на Царя Освободител, наричан още Паметник на Освободителите, е един от
@@ -709,7 +709,18 @@ if(isset($_COOKIE['username'])) {
                                     договор и свикването на Учредителното събрание. Фронталната част на паметника е
                                     увенчана с бронзов лавров венец, дар от румънския крал Карол I в памет на загиналите
                                     румънски воини и с надписа „Царю Освободителю // Признателна България“.</p>
-
+								<div>
+                                	<?php
+									$images = $user->displayImagesByCategory(5);
+									if($user->isLogged()) {
+										if(!empty($images)) {
+											foreach ($images as $img) {
+												echo '<img class="uploaded-images" src="data:image;base64,'.$img['image'].'">';
+											}
+										}
+									}
+									?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -738,9 +749,9 @@ if(isset($_COOKIE['username'])) {
                             </div>
                             <div class="card__copy">
                                 <div class="meta">
-<!--                                     <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" -->
-<!--                                             marginwidth="0" -->
-<!--                                             src="http://maps.google.ca/maps?f=q&amp;q=Софийски Университет&amp;output=embed"></iframe> -->
+                                    <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0"
+                                            marginwidth="0"
+                                            src="http://maps.google.ca/maps?f=q&amp;q=Софийски Университет&amp;output=embed"></iframe>
                                     <br/>
                                 </div>
                                 <p>Софийският университет „Св. Климент Охридски“ (от 1944 до 1989 г. се нарича Софийски
@@ -768,7 +779,18 @@ if(isset($_COOKIE['username'])) {
                                     ректор на висшето училище – Александър Теодоров-Балан измежду първите му седем
                                     преподаватели – т. нар. „нови седмочисленици“, сред които Любомир Милетич, Иван
                                     Георгов и Никола Михайловски. През 1904 г. е преименуван на университет.</p>
-
+								<div>
+                                	<?php
+									$images = $user->displayImagesByCategory(6);
+									if($user->isLogged()) {
+										if(!empty($images)) {
+											foreach ($images as $img) {
+												echo '<img class="uploaded-images" src="data:image;base64,'.$img['image'].'">';
+											}
+										}
+									}
+									?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -798,9 +820,9 @@ if(isset($_COOKIE['username'])) {
                             </div>
                             <div class="card__copy">
                                 <div class="meta">
-<!--                                     <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0" -->
-<!--                                             marginwidth="0" -->
-<!--                                             src="http://maps.google.ca/maps?f=q&amp;q=Незнайния войн&amp;output=embed"></iframe> -->
+                                    <iframe width="500" height="350" frameborder="0" scrolling="no" marginheight="0"
+                                            marginwidth="0"
+                                            src="http://maps.google.ca/maps?f=q&amp;q=Незнайния войн&amp;output=embed"></iframe>
                                     <br/>
 
                                 </div>
@@ -816,7 +838,18 @@ if(isset($_COOKIE['username'])) {
                                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa distinctio dolorem
                                     facere id, itaque libero minima modi, nihil nobis non odio, officia reprehenderit
                                     sit totam vitae. Nemo similique tempora totam.</p>
-
+								<div>
+                                	<?php
+									$images = $user->displayImagesByCategory(7);
+									if($user->isLogged()) {
+										if(!empty($images)) {
+											foreach ($images as $img) {
+												echo '<img class="uploaded-images" src="data:image;base64,'.$img['image'].'">';
+											}
+										}
+									}
+									?>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -827,7 +860,7 @@ if(isset($_COOKIE['username'])) {
 </div>
 <script src="js/login-dialog.js"></script>
 <script>
-<?php if($users->isLogged()) {?>
+<?php if($user->isLogged()) {?>
 document.querySelector("#button_account").style.display = 'none';
 document.querySelector("#button_reg").style.display = 'none';
 
@@ -836,22 +869,6 @@ document.querySelector("#button_account").style.display = 'block';
 document.querySelector("#button_reg").style.display = 'block';
 document.querySelector(".upload-img").style.display = 'none';
 <?php }?>
-
-<?php // if($users->isLogged()) { error_log(1);?>
-//if(document.querySelector("#button_exit")!==null) {
-// 	var fn = function (){ 
-		<?php //$users->logout();?>
-// 		window.location = "http://localhost/index.php";
-// 		}
-// 	(function (){
-// 		document.getElementById("button_exit").addEventListener("click", fn);
-// 		this.stopPropagation();
-// 		console.log(1);
-// 	}());
-	
-	//}, false);
-//}
-<?php  //}?>
 </script>
 </body>
 </html>
